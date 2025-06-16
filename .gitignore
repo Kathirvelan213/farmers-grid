@@ -1,2 +1,30 @@
-.vs/
+#Others
 sqlCommands/
+
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Core secrets
+secrets.json
+
+# Rider project files
+.idea/
+
+# VS Code settings (if you're using it alongside)
+.vscode/
+
+# Visual Studio files
+.vs/
+
+# Environment config files (optional - if you don’t want them in version control)
+appsettings.Development.json
+
+# Others (optional)
+*.log

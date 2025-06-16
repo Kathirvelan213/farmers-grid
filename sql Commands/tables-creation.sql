@@ -1,0 +1,42 @@
+-- CREATE TABLE Products(
+--     id INT PRIMARY KEY IDENTITY(1,1),
+--     name VARCHAR(100) NOT NULL,
+--     description VARCHAR(MAX),
+--     imageUrl VARCHAR(MAX)
+-- );
+
+-- sp_help 'products';
+
+select * from products;
+
+-- INSERT INTO products (name) VALUES
+-- ('Tomato'),
+-- ('Onion'),
+-- ('Potato'),
+-- ('Brinjal'),
+-- ('Cabbage'),
+-- ('Cauliflower'),
+-- ('Carrot'),
+-- ('Radish'),
+-- ('Beans'),
+-- ('Peas'),
+-- ('Chilli'),
+-- ('Garlic'),
+-- ('Ginger'),
+-- ('Coriander'),
+-- ('Spinach'),
+-- ('Bottle Gourd'),
+-- ('Bitter Gourd'),
+-- ('Pumpkin'),
+-- ('Cucumber'),
+-- ('Beetroot'),
+-- ('Sweet Corn'),
+-- ('Green Gram'),
+-- ('Black Gram'),
+-- ('Turmeric'),
+-- ('Mustard Leaves'),
+-- ('Drumstick'),
+-- ('Lady Finger'),
+-- ('Turnip'),
+-- ('Yam'),
+-- ('Lettuce');
