@@ -28,3 +28,6 @@ appsettings.Development.json
 
 # Others (optional)
 *.log
+
+/publish/
+/backend.zip
