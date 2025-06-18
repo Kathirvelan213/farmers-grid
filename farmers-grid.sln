@@ -5,6 +5,10 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarmersGrid.API", "FarmersGrid.API\FarmersGrid.API.csproj", "{6E2E8632-082E-46D1-9BC3-382E06531793}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarmersGrid.BAL", "FarmersGrid.BAL\FarmersGrid.BAL.csproj", "{F592B4F2-A6B0-455A-A712-880C703DCC8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarmersGrid.DAL", "FarmersGrid.DAL\FarmersGrid.DAL.csproj", "{97B96973-6168-4D80-9673-6DC307684E3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{6E2E8632-082E-46D1-9BC3-382E06531793}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E2E8632-082E-46D1-9BC3-382E06531793}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E2E8632-082E-46D1-9BC3-382E06531793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F592B4F2-A6B0-455A-A712-880C703DCC8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F592B4F2-A6B0-455A-A712-880C703DCC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F592B4F2-A6B0-455A-A712-880C703DCC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F592B4F2-A6B0-455A-A712-880C703DCC8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97B96973-6168-4D80-9673-6DC307684E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97B96973-6168-4D80-9673-6DC307684E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97B96973-6168-4D80-9673-6DC307684E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97B96973-6168-4D80-9673-6DC307684E3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

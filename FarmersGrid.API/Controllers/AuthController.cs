@@ -25,17 +25,22 @@ namespace FarmersGrid.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDTO regiterDto)
         {
-            var user = new ApplicationUser { UserName = regiterDto.Username, Email = regiterDto.Email };
-            var createdResult = await _userManager.CreateAsync(user, regiterDto.Password);
+            var user = new ApplicationUser { UserName = regiterDto.Username, Email = regiterDto.Email, };
+            var userCreatedResult = await _userManager.CreateAsync(user, regiterDto.Password);
 
-            if (createdResult.Succeeded)
+            if (!userCreatedResult.Succeeded)
             {
+                return BadRequest(userCreatedResult.Errors);
+            }
+
+            var roleAssignedResult = await _userManager.AddToRoleAsync(user, regiterDto.Role.ToLower());
+            if (!roleAssignedResult.Succeeded)
+            {
+                await _userManager.DeleteAsync(user);
+                return BadRequest(roleAssignedResult.Errors);
+            }
                 return Ok("Successfully registered");
-            }
-            else
-            {
-                return BadRequest(createdResult.Errors);
-            }
+            
         }
 
         [HttpPost("login")]
