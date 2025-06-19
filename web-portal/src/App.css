@@ -3,6 +3,8 @@
   /* margin: 0 auto; */
   /* padding: 2rem; */
   text-align: center;
+  --primary:rgb(8, 81, 2);
+  --secondary:rgb(16, 148, 4);
 }
 
 .logo {
