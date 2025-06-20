@@ -2,16 +2,29 @@ import "../styles/LoginPage.css"
 import { InputField } from "./InputField"
 import {FaUser} from 'react-icons/fa'
 import {FaLock} from 'react-icons/fa'
-
+import { loginAPI } from "../../apiConsumer/identityAPI"
+import { useState } from "react"
 export function LoginBox(){
+    const [email, setEmail]=useState();
+    const [password, setPassword]=useState();
+
+    const handleLogin=async (e)=>{
+        e.preventDefault();
+        const token=await loginAPI({
+            email:email,
+            password:password
+        }).then((response)=>console.log(response.data)).catch((error)=>console.error(error))
+        
+    }
     return (<>
-        <form className="loginBox" onSubmit={(e)=>e.preventDefault()}>
+        <form className="loginBox" onSubmit={handleLogin}>
             <img src="/Logo1-removebg-preview.png" alt="Logo" className="appLogo"/>
-            <InputField placeholder="Email" Icon={FaUser}></InputField>
-            <InputField placeholder="Password" Icon={FaLock}></InputField>
+            <InputField placeholder="Email" Icon={FaUser} value={email} setValue={setEmail}></InputField>
+            <InputField placeholder="Password" Icon={FaLock} value={password} setValue={setPassword}></InputField>
             <button className="loginButton" color="rgb(8, 81, 2)">Login</button>
         </form>
     </>
     )
 }
+
 
