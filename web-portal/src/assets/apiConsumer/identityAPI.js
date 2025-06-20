@@ -1,12 +1,14 @@
 import axios from 'axios';
 
 
+console.log(import.meta.env.VITE_API_URL);
 const axiosInstance=axios.create({
-    baseURL:"https://farmers-grid-backend.azurewebsites.net/api/auth",
+    
+    baseURL:import.meta.env.VITE_API_URL,
     headers:{
         "Content-Type":"application/json",
     },
     withCredentials:true
 })
 
-export const loginAPI=(loginDto)=>axiosInstance.post('/login',loginDto);   
+export const loginAPI=(loginDto)=>axiosInstance.post('/api/auth/login',loginDto);   

@@ -4,16 +4,20 @@ import {FaUser} from 'react-icons/fa'
 import {FaLock} from 'react-icons/fa'
 import { loginAPI } from "../../apiConsumer/identityAPI"
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom';
 export function LoginBox(){
     const [email, setEmail]=useState();
     const [password, setPassword]=useState();
+    const navigate = useNavigate();
 
     const handleLogin=async (e)=>{
         e.preventDefault();
         const token=await loginAPI({
             email:email,
             password:password
-        }).then((response)=>console.log(response.data)).catch((error)=>console.error(error))
+        }).then(
+            (response)=>navigate('/dashboard')
+        ).catch((error)=>console.error(error))
         
     }
     return (<>

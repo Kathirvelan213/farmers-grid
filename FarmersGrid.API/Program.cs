@@ -10,12 +10,25 @@ using FarmersGrid.API;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAuthentication("CookieAuth")
+    .AddCookie("CookieAuth", options =>
+    {
+        options.Cookie.Name = "auth_token"; // name of the cookie
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // HTTPS only
+        options.Cookie.SameSite = SameSiteMode.Strict;
+        options.ExpireTimeSpan = TimeSpan.FromDays(1);
+        options.LoginPath = "/login"; // optional
+        options.AccessDeniedPath = "/denied"; // optional
+    });
 
+builder.Services.AddAuthorization();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("https://brave-sand-074977000.1.azurestaticapps.net")
+        policy.WithOrigins(builder.Configuration["Cors:AllowedOrigins"])
+        .AllowCredentials()
         .AllowAnyHeader()
         .AllowAnyMethod();
     });
