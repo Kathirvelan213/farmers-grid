@@ -1,0 +1,7 @@
+.searchPanel{
+    width: 500px;
+    height:600px;
+    display: grid;
+    background-color: beige;
+    align-content: center;
+}

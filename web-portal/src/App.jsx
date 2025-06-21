@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LoginPage } from './assets/LoginPage/LoginPage';
-import { DashBoard } from './assets/DashBoardPage/components/DashBoard';
+import { DashBoardPage } from './assets/DashBoardPage/DashBoardPage';
 import {Routes,Route,BrowserRouter} from 'react-router-dom';
 import './App.css'
 
@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<LoginPage/>}/>
-        <Route path='/dashboard' element={<DashBoard/>}/>
+        <Route path='/dashboard' element={<DashBoardPage/>}/>
       </Routes>
       </BrowserRouter>
     </>
