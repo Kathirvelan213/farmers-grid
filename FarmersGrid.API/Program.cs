@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using FarmersGrid.API;
+using FarmersGrid.DAL;
+using FarmersGrid.BAL;
 
 
 
@@ -65,6 +67,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // 2. Add Authorization Middleware
 builder.Services.AddAuthorization();
+
+//Adding BAL and DAL to service for DI
+builder.Services.AddScoped<DbService>();
+
+builder.Services.AddScoped<ProductsData>();
+builder.Services.AddScoped<ProductsManager>();
 
 var app = builder.Build();
 
