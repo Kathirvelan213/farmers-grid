@@ -15,9 +15,7 @@ namespace FarmersGrid.DAL
         public async Task<IEnumerable<Product>> GetProducts()
         {
             DynamicParameters dynamicParameters = new DynamicParameters();
-            var result= await _dbService.QueryAsync<Product>("usp_GetProducts", dynamicParameters);
-            Console.WriteLine("data"+result);
-            return result;
+            return await _dbService.QueryAsync<Product>("usp_GetProducts", dynamicParameters);
         }
     }
 }

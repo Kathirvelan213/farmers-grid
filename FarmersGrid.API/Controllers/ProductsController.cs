@@ -20,9 +20,7 @@ namespace FarmersGrid.API.Controllers
         [HttpGet]
         public async Task<IEnumerable<Product>> GetProduct()
         {
-            var result= await _productsManager.GetProductsData();
-            Console.WriteLine( result);
-            return result;
+            return await _productsManager.GetProductsData();    
         }
 
 

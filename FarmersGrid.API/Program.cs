@@ -1,16 +1,23 @@
+using Azure.Storage;
+using Azure.Storage.Blobs;
+using FarmersGrid.API;
 using FarmersGrid.API.Data;
+using FarmersGrid.BAL;
+using FarmersGrid.DAL;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using FarmersGrid.API;
-using FarmersGrid.DAL;
-using FarmersGrid.BAL;
-
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton(x =>
+    new StorageSharedKeyCredential(
+        builder.Configuration["AzureStorage:AccountName"],
+        builder.Configuration["AzureStorage:AccountKey"]));
+
 
 // Add services to the container.
 builder.Services.AddAuthentication("CookieAuth")
@@ -73,6 +80,8 @@ builder.Services.AddScoped<DbService>();
 
 builder.Services.AddScoped<ProductsData>();
 builder.Services.AddScoped<ProductsManager>();
+
+builder.Services.AddScoped<BlobServiceManager>();
 
 var app = builder.Build();
 

@@ -13,9 +13,7 @@ namespace FarmersGrid.BAL
         }
         public async Task<IEnumerable<Product>> GetProductsData()
         {
-            var result= await _productsData.GetProducts();
-            Console.WriteLine(result);
-            return result;
+            return await _productsData.GetProducts();
         }
     }
 }
