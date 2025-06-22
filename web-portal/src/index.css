@@ -48,15 +48,16 @@ button {
   font-family: inherit;
   background-color: var(--secondary);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, transform 0.25s;
   color: rgb(210, 208, 208);
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #8effbb;
+  transform:scale(1.02);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto lightgreen;
 }
 
 @media (prefers-color-scheme: light) {
