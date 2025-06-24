@@ -9,7 +9,7 @@
     flex-direction: column;
 }
 
-.productsGallery{
+.itemGallery{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     overflow-y: auto;
@@ -23,12 +23,16 @@
     border-radius: 15px;
 }
 
-.productTile{
+.itemTile{
     margin:5px;
+    height: 150px;
+    width: 140px;
 }
 
-.productImage{
+.itemImage{
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
+    width:fill;
+    height: 120px;
 
 }
