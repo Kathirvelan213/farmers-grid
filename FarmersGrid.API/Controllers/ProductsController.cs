@@ -2,9 +2,11 @@
 using FarmersGrid.BAL;
 using Microsoft.AspNetCore.Authorization;
 using FarmersGrid.Models;
+using System.Security.Claims;
 
 namespace FarmersGrid.API.Controllers
 {
+    [Authorize(AuthenticationSchemes = "CookieAuth")]
     [ApiController]
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
@@ -16,12 +18,19 @@ namespace FarmersGrid.API.Controllers
             _productsManager = productsManager;
         }
 
-        //[Authorize]
         [HttpGet]
         public async Task<IEnumerable<Product>> GetProduct()
         {
             return await _productsManager.GetProductsData();    
         }
+        [HttpGet("/GetMyProducts")]
+        public async Task<IEnumerable<Product>> GetSellerProduct()
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return await _productsManager.GetSellerProducts(userId);
+        }
+        
+
 
 
     }

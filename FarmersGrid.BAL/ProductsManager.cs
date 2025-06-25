@@ -15,5 +15,10 @@ namespace FarmersGrid.BAL
         {
             return await _productsData.GetProducts();
         }
+
+        public async Task<IEnumerable<Product>> GetSellerProducts(string userId)
+        {
+            return await _productsData.GetSellerProducts(userId);
+        }
     }
 }
