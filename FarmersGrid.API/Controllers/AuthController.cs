@@ -52,10 +52,11 @@ namespace FarmersGrid.API.Controllers
             {
                 var roles = await _userManager.GetRolesAsync(user);
                 var role = roles.FirstOrDefault();
-                string token = _GenerateJwtToken(user.UserName, role);
+                string token = _GenerateJwtToken(user.Email, role);
 
                 var claims = new List<Claim>
                 {
+                    new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                     new Claim(ClaimTypes.Name, loginDto.Email),
                     new Claim(ClaimTypes.Role, role)
                 };

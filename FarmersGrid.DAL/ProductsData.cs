@@ -27,6 +27,7 @@ namespace FarmersGrid.DAL
         public async Task<int> InsertSellerProduct(string userId, int productId,float price)
         {
             DynamicParameters parameters = new DynamicParameters();
+            Console.WriteLine(userId);
             parameters.Add("@userId",userId);
             parameters.Add("@productId",productId);
             parameters.Add("@unitPrice",price);
@@ -35,11 +36,11 @@ namespace FarmersGrid.DAL
             return await _dbService.ExecuteAsync("usp_InsertSellerProduct", parameters);
 
         }
-        public async Task<int> DeleteSellerProduct(string id)
+        public async Task<int> DeleteSellerProduct(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
-            return await _dbService.ExecuteAsync("usp_DeleteSellerProducts", parameters);
+            return await _dbService.ExecuteAsync("usp_DeleteSellerProduct", parameters);
         }
     }
 }
