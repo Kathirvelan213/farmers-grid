@@ -52,7 +52,6 @@ namespace FarmersGrid.API.Controllers
             {
                 var roles = await _userManager.GetRolesAsync(user);
                 var role = roles.FirstOrDefault();
-                string token = _GenerateJwtToken(user.Email, role);
 
                 var claims = new List<Claim>
                 {
@@ -60,6 +59,7 @@ namespace FarmersGrid.API.Controllers
                     new Claim(ClaimTypes.Name, loginDto.Email),
                     new Claim(ClaimTypes.Role, role)
                 };
+                string token = _GenerateJwtToken(claims);
 
                 var identity = new ClaimsIdentity(claims, "CookieAuth");
                 var principal = new ClaimsPrincipal(identity);
@@ -71,13 +71,13 @@ namespace FarmersGrid.API.Controllers
 
         }
 
-        string _GenerateJwtToken(string username, string role)
+        string _GenerateJwtToken(List<Claim> claims)
         {
-            var claims = new[]
-            {
-        new Claim(ClaimTypes.Name, username),
-        new Claim(ClaimTypes.Role, role)
-    };
+    //        var claims = new[]
+    //        {
+    //    new Claim(ClaimTypes.Name, username),
+    //    new Claim(ClaimTypes.Role, role)
+    //};
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

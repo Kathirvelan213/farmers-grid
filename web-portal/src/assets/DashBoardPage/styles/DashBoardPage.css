@@ -16,7 +16,7 @@
 }
 
 .searchBar{
-    width: fill;
+    width: stretch;
     margin:15px;
     height: 40px;
     padding: 10px;
@@ -32,7 +32,24 @@
 .itemImage{
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
-    width:fill;
+    width:stretch;
     height: 120px;
 
+}
+
+.itemList{
+    display: flex;
+    flex-direction: column;
+}
+
+.itemRecord{
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    width: auto;
+}
+
+.itemImageSmall{
+    height:100%;
+    width:auto;
 }

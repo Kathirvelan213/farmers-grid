@@ -9,6 +9,7 @@ namespace FarmersGrid.DAL
     public class ProductsData
     {
         private readonly DbService _dbService;
+
         public ProductsData(DbService dbService)
         {
             _dbService = dbService;
@@ -18,11 +19,11 @@ namespace FarmersGrid.DAL
             DynamicParameters parameters = new DynamicParameters();
             return await _dbService.QueryAsync<Product>("usp_GetProducts", parameters);
         }
-        public async Task<IEnumerable<Product>> GetSellerProducts(string userId)
+        public async Task<IEnumerable<MyProduct>> GetSellerProducts(string userId)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@userId", userId);
-            return await _dbService.QueryAsync<Product>("usp_GetSellerProducts", parameters);
+            return await _dbService.QueryAsync<MyProduct>("usp_GetSellerProducts", parameters);
         }
         public async Task<int> InsertSellerProduct(string userId, int productId,float price)
         {

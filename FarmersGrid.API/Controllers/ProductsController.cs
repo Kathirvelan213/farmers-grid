@@ -26,24 +26,22 @@ namespace FarmersGrid.API.Controllers
         {
             return await _productsManager.GetProductsData();    
         }
-        [HttpGet("/GetMyProducts")]
-        public async Task<IEnumerable<Product>> GetMyProducts()
+        [HttpGet("get-my-products")]
+        public async Task<IEnumerable<MyProduct>> GetMyProducts()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return await _productsManager.GetSellerProducts(userId);
         }
-        [HttpPost("/AddProduct")]
+        [HttpPost("add-product")]
         public async Task<int> AddProduct(AddProductDTO addProductDTO)
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return await _productsManager.InsertSellerProduct(userId,addProductDTO.productId,addProductDTO.price);
-
         }
-        [HttpPost("/RemoveProduct")]
+        [HttpDelete("remove-product")]
         public async Task<int> RemoveProduct(RemoveProductDTO removeProductDTO)
         {
             return await _productsManager.DeleteSellerProduct(removeProductDTO.id);
-
         }
         
 
