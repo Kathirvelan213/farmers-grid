@@ -36,5 +36,10 @@ namespace FarmersGrid.DAL
             using var SqlConnection=CreateConnection();
             return await SqlConnection.ExecuteAsync(sp, parameters, commandType:CommandType.StoredProcedure);
         }
+        public async Task<Object> ExecuteScalarAsync(string sp,DynamicParameters parameters)
+        {
+            using var SqlConnection=CreateConnection();
+            return await SqlConnection.ExecuteScalarAsync(sp, parameters, commandType:CommandType.StoredProcedure);
+        }
     }
 }

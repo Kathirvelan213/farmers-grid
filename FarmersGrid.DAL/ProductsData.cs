@@ -34,7 +34,7 @@ namespace FarmersGrid.DAL
             parameters.Add("@unitPrice",price);
             parameters.Add("ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            return await _dbService.ExecuteAsync("usp_InsertSellerProduct", parameters);
+            return (int)(decimal)await _dbService.ExecuteScalarAsync("usp_InsertSellerProduct", parameters);
 
         }
         public async Task<int> DeleteSellerProduct(int id)
