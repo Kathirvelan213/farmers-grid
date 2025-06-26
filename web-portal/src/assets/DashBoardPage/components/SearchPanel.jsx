@@ -2,7 +2,7 @@ import '../styles/DashBoardPage.css';
 import { useState } from 'react';
 import { Gallery } from './Gallery';
 
-export function SearchPanel({items,filterKey,DisplayComponent}){
+export function SearchPanel({items,filterKey,DisplayComponent,displayComponentProps}){
     const [selected,setSelected]=useState('');
        
     function handleSearchChange(e){
@@ -17,7 +17,7 @@ export function SearchPanel({items,filterKey,DisplayComponent}){
     return (
         <div className='searchPanel'>
             <input placeholder='Enter' value={selected} onChange={handleSearchChange} className='searchBar'/>
-            <DisplayComponent items={filteredItems}></DisplayComponent>
+            <DisplayComponent items={filteredItems} {...displayComponentProps}></DisplayComponent>
         </div>
     )
 }

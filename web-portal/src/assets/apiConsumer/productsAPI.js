@@ -14,6 +14,6 @@ export const getProductsAPI=()=>axiosInstance.get('/api/products');
 
 export const getMyProductsAPI=()=>axiosInstance.get('/api/products/get-my-products')
 
-export const AddProductsAPI=({productDTO})=>axiosInstance.post('/api/products/get-my-products',productDTO)
+export const AddProductsAPI=(productDTO)=>axiosInstance.post('/api/products/add-product',productDTO)
 
-export const RemoveProductsAPI=({id})=>axiosInstance.delete('/api/products/get-my-products',id)
+export const RemoveProductsAPI=(id)=>axiosInstance.delete('/api/products/remove-product',id)
