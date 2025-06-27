@@ -15,8 +15,8 @@ export function MyProductsPanel(){
     const [moreProducts,setMoreProducts]=useState({});
     const [insertState,setInsertState]=useState(false);
     const [deleteState,setDeleteState]=useState(false);
-    const [editState,setEditState]=useState(false);
     const [toInsert,setToInsert]=useState(null);
+
     var allProductsDict={};
     useEffect(()=>{
         const getProducts=async ()=>{
@@ -73,7 +73,7 @@ export function MyProductsPanel(){
     return (
         <>
         
-        <SearchPanel items={Object.values(myProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"rowId"}}></SearchPanel>
+        <SearchPanel items={Object.values(myProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"rowId",setItems:setMyProducts}}></SearchPanel>
         {insertState&&
         <div>
             <ItemRecord item={toInsert}></ItemRecord>
