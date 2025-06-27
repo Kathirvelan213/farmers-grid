@@ -28,6 +28,10 @@ namespace FarmersGrid.BAL
         {
             return await _productsData.DeleteSellerProduct(id);
         }
+        public async Task<int> UpdateSellerProduct(int id,float price)
+        {
+            return await _productsData.UpdateSellerProduct(id,price);
+        }
         
     }
 }

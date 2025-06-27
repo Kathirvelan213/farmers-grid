@@ -15,6 +15,7 @@ namespace FarmersGrid.API.Controllers
 
         public record AddProductDTO ( int productId, float unitPrice);
         public record RemoveProductDTO ( int id);
+        public record ChangePriceDTO( int id,float unitPrice);
 
         public ProductsController(ProductsManager productsManager)
         {
@@ -37,6 +38,11 @@ namespace FarmersGrid.API.Controllers
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return await _productsManager.InsertSellerProduct(userId,addProductDTO.productId,addProductDTO.unitPrice);
+        }
+        [HttpPut("change-price")]
+        public async Task<int> ChangePrice([FromBody] ChangePriceDTO changePriceDTO)
+        {
+            return await _productsManager.UpdateSellerProduct(changePriceDTO.id,changePriceDTO.unitPrice);
         }
         [HttpDelete("remove-product")]
         public async Task<int> RemoveProduct([FromBody] RemoveProductDTO removeProductDTO)
