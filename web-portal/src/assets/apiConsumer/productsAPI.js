@@ -17,3 +17,5 @@ export const getMyProductsAPI=()=>axiosInstance.get('/api/products/get-my-produc
 export const AddProductsAPI=(productDTO)=>axiosInstance.post('/api/products/add-product',productDTO)
 
 export const RemoveProductsAPI=(id)=>axiosInstance.delete('/api/products/remove-product',id)
+
+export const ChangePriceAPI=(changePriceDTO)=>axiosInstance.put('/api/products/change-price',changePriceDTO)

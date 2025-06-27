@@ -3,17 +3,16 @@ import { useSas } from '../../global/components/SasProvider'
 import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 import { FaSave } from 'react-icons/fa';
+import { ChangePriceAPI } from '../../apiConsumer/productsAPI';
 import { useEffect, useState } from 'react';
 export function ItemRecord({item,setItems}){
     const sasToken=useSas();
     const [editState,setEditState]=useState(false);
     const [price,setPrice]=useState(item.unitPrice)
-    
-    if(item==null){
-        return(<></>);
-    }
-    function handleSave(){
+
+    async function handleSave(){
         setEditState(false);
+        await ChangePriceAPI({id:item.rowId,unitPrice:price});
         item.unitPrice=price;
         setItems(prev=>({...prev,[item.id]:item}));
     }
