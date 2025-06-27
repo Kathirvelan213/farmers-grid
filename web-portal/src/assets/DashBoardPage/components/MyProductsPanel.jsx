@@ -8,6 +8,7 @@ import { SearchPanel } from './SearchPanel';
 import { Gallery } from './Gallery';
 import {ItemsList} from './ItemsList.jsx'
 import { ItemRecord } from './Itemrecord.jsx';
+import { AddProductPanel } from './AddProductPanel.jsx';
 
 export function MyProductsPanel(){
     const [allProducts,setAllProducts]=useState({});
@@ -76,7 +77,7 @@ export function MyProductsPanel(){
         <SearchPanel items={Object.values(myProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"rowId",setItems:setMyProducts}}></SearchPanel>
         {insertState&&
         <div>
-            <ItemRecord item={toInsert}></ItemRecord>
+            <AddProductPanel item={toInsert}></AddProductPanel>
             <button onClick={handleInsert}>Add</button>
         </div>}
         {!insertState?

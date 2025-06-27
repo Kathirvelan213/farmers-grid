@@ -3,18 +3,25 @@ import { useSas } from '../../global/components/SasProvider'
 import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 import { FaSave } from 'react-icons/fa';
-import { ChangePriceAPI } from '../../apiConsumer/productsAPI';
-import { useEffect, useState } from 'react';
+import { ChangePriceAPI,RemoveProductsAPI } from '../../apiConsumer/productsAPI';
+import { useState } from 'react';
 export function ItemRecord({item,setItems}){
     const sasToken=useSas();
     const [editState,setEditState]=useState(false);
     const [price,setPrice]=useState(item.unitPrice)
-
+    
     async function handleSave(){
         setEditState(false);
         await ChangePriceAPI({id:item.rowId,unitPrice:price});
         item.unitPrice=price;
         setItems(prev=>({...prev,[item.id]:item}));
+    }
+    async function handleDelete(){
+        await RemoveProductsAPI({id:item.rowId});
+        setItems(prev=>{
+            const {[item.id]:removed,...others}=prev;
+            return others;
+        });
     }
     return(
         <div className='itemRecord'>
@@ -28,7 +35,7 @@ export function ItemRecord({item,setItems}){
             {!editState?
             <button><FaEdit onClick={()=>setEditState(true)}></FaEdit></button>:
             <button><FaSave onClick={handleSave}></FaSave></button>}
-            <button><FaTrash></FaTrash></button>
+            <button><FaTrash onClick={handleDelete}></FaTrash></button>
         </div>
     )
 }

@@ -16,6 +16,16 @@ export const getMyProductsAPI=()=>axiosInstance.get('/api/products/get-my-produc
 
 export const AddProductsAPI=(productDTO)=>axiosInstance.post('/api/products/add-product',productDTO)
 
-export const RemoveProductsAPI=(id)=>axiosInstance.delete('/api/products/remove-product',id)
+export const RemoveProductsAPI=(idDTO)=>axiosInstance.delete('/api/products/remove-product',{data:idDTO})
 
-export const ChangePriceAPI=(changePriceDTO)=>axiosInstance.put('/api/products/change-price',changePriceDTO)
+export const ChangePriceAPI=(changePriceDTO)=>axiosInstance.put('/api/products/change-price',changePriceDTO)  
+
+//LOOK AT THIS!!! AAHHHHH
+
+/*axios.post(url, body)
+
+axios.put(url, body)
+
+axios.delete(url, { data: body }) ← this trips everyone up!
+
+*/
