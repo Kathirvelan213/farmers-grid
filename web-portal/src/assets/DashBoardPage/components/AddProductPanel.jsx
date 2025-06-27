@@ -2,7 +2,7 @@ import '../styles/DashBoardPage.css'
 import { useSas } from '../../global/components/SasProvider';
 
 export function AddProductPanel({item}){
-        const sasToken=useSas();
+    const sasToken=useSas();
     
     if(item==null){
         return(<></>)

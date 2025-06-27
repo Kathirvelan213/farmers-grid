@@ -1,7 +1,7 @@
-.searchPanel{
+.searchPanel {
     width: 500px;
-    height:600px;
-    background-color: beige;
+    height: 600px;
+    background-color: rgba(239, 239, 239, 0.71);
     align-content: center;
     position: relative;
     border-radius: 10px;
@@ -9,47 +9,62 @@
     flex-direction: column;
 }
 
-.itemGallery{
+.itemGallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     overflow-y: auto;
 }
 
-.searchBar{
+.searchBar {
     width: stretch;
-    margin:15px;
+    margin: 15px;
     height: 40px;
     padding: 10px;
     border-radius: 15px;
 }
 
-.itemTile{
-    margin:5px;
+.itemTile {
+    margin: 5px;
     height: 150px;
     width: 140px;
 }
 
-.itemImage{
+.itemImage {
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
-    width:stretch;
+    width: stretch;
     height: 120px;
 
 }
 
-.itemList{
+.itemList {
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
-.itemRecord{
-    display: flex;
-    flex-direction: row;
-    height: 40px;
-    width: auto;
+.itemRecord {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: 50px;
+    margin: 3px;
+    width: stretch;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    transition: background-color 0.5s ease;
 }
 
-.itemImageSmall{
-    height:100%;
-    width:auto;
+.itemRecord:hover{
+    transform: scale(1.01);
+    background-color: rgb(229, 250, 215);
+}
+
+.itemImageSmall {
+    max-height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
 }

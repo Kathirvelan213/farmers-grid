@@ -33,9 +33,9 @@ export function ItemRecord({item,setItems}){
 
             }
             {!editState?
-            <button><FaEdit onClick={()=>setEditState(true)}></FaEdit></button>:
-            <button><FaSave onClick={handleSave}></FaSave></button>}
-            <button><FaTrash onClick={handleDelete}></FaTrash></button>
+            <button onClick={()=>setEditState(true)}><FaEdit ></FaEdit></button>:
+            <button onClick={handleSave}><FaSave ></FaSave></button>}
+            <button  onClick={handleDelete}><FaTrash></FaTrash></button>
         </div>
     )
 }
