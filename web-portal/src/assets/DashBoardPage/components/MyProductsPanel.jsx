@@ -10,7 +10,7 @@ import {ItemsList} from './ItemsList.jsx'
 import { ItemRecord } from './Itemrecord.jsx';
 import { AddProductPanel } from './AddProductPanel.jsx';
 
-export function MyProductsPanel(){
+export function MyProductsPanel({className}){
     const [allProducts,setAllProducts]=useState({});
     const [myProducts,setMyProducts]=useState({});
     const [moreProducts,setMoreProducts]=useState({});
@@ -72,7 +72,7 @@ export function MyProductsPanel(){
         }
     }
     return (
-        <div>
+        <div className={className}>
         <SearchPanel items={Object.values(myProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"rowId",setItems:setMyProducts}}></SearchPanel>
         {insertState&&
         <div>
