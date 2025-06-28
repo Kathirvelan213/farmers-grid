@@ -1,15 +1,12 @@
 using Azure.Storage;
-using Azure.Storage.Blobs;
 using FarmersGrid.API;
 using FarmersGrid.API.Data;
 using FarmersGrid.BAL;
 using FarmersGrid.DAL;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using FarmersGrid.API.Hubs;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -60,7 +57,10 @@ builder.Services.AddCors(options =>
         .AllowAnyMethod();
     });
 });
+
 builder.Services.AddControllers();
+builder.Services.AddSignalR();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -100,6 +100,7 @@ builder.Services.AddScoped<ProductsManager>();
 
 builder.Services.AddScoped<BlobServiceManager>();
 
+
 var app = builder.Build();
 
 
@@ -118,6 +119,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<ChatHub>("/chathub");
 
 using (var scope = app.Services.CreateScope())
 {
