@@ -72,8 +72,7 @@ export function MyProductsPanel(){
         }
     }
     return (
-        <>
-        
+        <div>
         <SearchPanel items={Object.values(myProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"rowId",setItems:setMyProducts}}></SearchPanel>
         {insertState&&
         <div>
@@ -84,6 +83,6 @@ export function MyProductsPanel(){
         <button onClick={()=>{setInsertState(true);setToInsert(null);}}>Add</button>:<>
         <button onClick={()=>{setInsertState(false);}}>Cancel</button> 
         <MoreProductsPanel items={Object.values(moreProducts)} setToInsert={setToInsert}></MoreProductsPanel></>}
-        </>
+        </div>
     )
 }

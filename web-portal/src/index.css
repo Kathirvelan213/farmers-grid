@@ -28,10 +28,11 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  /* box-sizing: border-box; */
+}
+html{
+  margin: 0;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -46,18 +47,15 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--secondary);
   cursor: pointer;
   transition: border-color 0.25s, transform 0.25s;
-  color: rgb(210, 208, 208);
 }
 button:hover {
-  border-color: #8effbb;
-  transform:scale(1.02);
+  border-color: #646cff;
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto lightgreen;
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {

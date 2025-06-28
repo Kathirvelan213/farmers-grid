@@ -3,6 +3,7 @@ import { useSas } from '../../global/components/SasProvider'
 import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 import { FaSave } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import { ChangePriceAPI,RemoveProductsAPI } from '../../apiConsumer/productsAPI';
 import { useState } from 'react';
 export function ItemRecord({item,setItems}){
@@ -28,14 +29,17 @@ export function ItemRecord({item,setItems}){
             <img className='itemImageSmall' src={`${item.imageUrl}?${sasToken}`}/>
             <label>{item.name}</label>
             {!editState?
-            <label>{price}</label>:
+            <label>₹{price}</label>:
             <input value={price} onChange={(e)=>{setPrice(e.target.value)}}></input>
 
             }
             {!editState?
-            <button onClick={()=>setEditState(true)}><FaEdit ></FaEdit></button>:
-            <button onClick={handleSave}><FaSave ></FaSave></button>}
-            <button  onClick={handleDelete}><FaTrash></FaTrash></button>
+            <button className='recordButton' onClick={()=>setEditState(true)}><FaEdit className='recordIcon !text-blue-400' ></FaEdit></button>:
+            <>
+            {/* <button className='recordButton' onClick={()=>{setEditState(false)}}><FaTimes  className='recordIcon !text-red-400'></FaTimes></button> */}
+            <button className='recordButton' onClick={handleSave}><FaSave  className='recordIcon !text-orange-400'></FaSave></button>
+            </>}
+            <button className='recordButton '  onClick={handleDelete}><FaTrash className='recordIcon !text-red-400' ></FaTrash></button>
         </div>
     )
 }
