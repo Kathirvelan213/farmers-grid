@@ -28,7 +28,6 @@ namespace FarmersGrid.DAL
         public async Task<int> InsertSellerProduct(string userId, int productId,float price)
         {
             DynamicParameters parameters = new DynamicParameters();
-            Console.WriteLine(userId);
             parameters.Add("@userId",userId);
             parameters.Add("@productId",productId);
             parameters.Add("@unitPrice",price);

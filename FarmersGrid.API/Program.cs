@@ -98,6 +98,9 @@ builder.Services.AddScoped<DbService>();
 builder.Services.AddScoped<ProductsData>();
 builder.Services.AddScoped<ProductsManager>();
 
+builder.Services.AddScoped<ChatData>();
+builder.Services.AddScoped<ChatManager>();
+
 builder.Services.AddScoped<BlobServiceManager>();
 
 

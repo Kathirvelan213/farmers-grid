@@ -1,9 +1,15 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using FarmersGrid.BAL;
+using Microsoft.AspNetCore.SignalR;
 
 namespace FarmersGrid.API.Hubs
 {
     public class ChatHub:Hub
     {
+        private readonly ChatManager _chatManager;
+        public ChatHub(ChatManager chatManager)
+        {
+            _chatManager = chatManager;
+        }
         public override async Task OnConnectedAsync()
         {
             await Clients.All.SendAsync("receiveMessage","hi");
@@ -12,6 +18,7 @@ namespace FarmersGrid.API.Hubs
         {
             await Clients.All.SendAsync("receiveMessage",message);
         }
+        
 
     }
 }
