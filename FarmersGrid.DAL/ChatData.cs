@@ -49,7 +49,7 @@ namespace FarmersGrid.DAL
             parameters.Add("@deliveryStatus", deliveryStatus);
             parameters.Add("ReturnValue", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            return (int)(decimal)await _dbService.ExecuteScalarAsync("usp_GetUnreadMessageCount", parameters);
+            return (int)(decimal)await _dbService.ExecuteScalarAsync("usp_InsertMessage", parameters);
 
         }
     }

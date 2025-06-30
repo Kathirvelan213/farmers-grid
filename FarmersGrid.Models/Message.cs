@@ -14,7 +14,6 @@ namespace FarmersGrid.Models
     }
     public enum DeliveryStatus
     {
-        sending,
         sent,
         delivered
     }

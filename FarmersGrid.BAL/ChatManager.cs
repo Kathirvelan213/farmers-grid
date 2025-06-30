@@ -1,4 +1,5 @@
-﻿using FarmersGrid.DAL;
+﻿using Azure.Messaging;
+using FarmersGrid.DAL;
 using FarmersGrid.Models;
 using System;
 using System.Collections.Generic;
@@ -30,10 +31,23 @@ namespace FarmersGrid.BAL
         {
             return await _chatData.GetUnreadMessageCount(userId);
         }
-        public async Task<int> StoreMessage(int chatId, string senderId, string message, ReadStatus readStatus, DeliveryStatus deliveryStatus)
+        public async Task<Message> StoreMessage(int chatId, string senderId, string messageContent)
         {
+            ReadStatus readStatus = ReadStatus.unread;
+            DeliveryStatus deliveryStatus = DeliveryStatus.sent;
             DateTime timestamp = DateTime.Now;
-            return await _chatData.InsertMessage(chatId, senderId, message, timestamp, readStatus, deliveryStatus);
+            int messageId=await _chatData.InsertMessage(chatId, senderId, messageContent, timestamp, readStatus, deliveryStatus);
+            Message message = new Message
+            {
+                id = messageId,
+                chatId = chatId,
+                senderId = senderId,
+                message = messageContent,
+                readStatus = readStatus,
+                deliveryStatus = deliveryStatus,
+                timestamp = timestamp
+            };
+            return message;
         }
     }
 }

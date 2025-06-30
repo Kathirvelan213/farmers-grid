@@ -40,8 +40,8 @@ namespace FarmersGrid.API.Controllers
                 await _userManager.DeleteAsync(user);
                 return BadRequest(roleAssignedResult.Errors);
             }
-                return Ok("Successfully registered");
-            
+            return Ok("Successfully registered");
+
         }
 
         [HttpPost("login")]
@@ -65,7 +65,14 @@ namespace FarmersGrid.API.Controllers
                 var principal = new ClaimsPrincipal(identity);
 
                 await HttpContext.SignInAsync("CookieAuth", principal);
-                return Ok(new { token });
+                return Ok(new
+                {
+                    token,
+                    user = new
+                    {
+                        id = user.Id
+                    }
+                });
             }
             return Unauthorized();
 
@@ -73,11 +80,11 @@ namespace FarmersGrid.API.Controllers
 
         string _GenerateJwtToken(List<Claim> claims)
         {
-    //        var claims = new[]
-    //        {
-    //    new Claim(ClaimTypes.Name, username),
-    //    new Claim(ClaimTypes.Role, role)
-    //};
+            //        var claims = new[]
+            //        {
+            //    new Claim(ClaimTypes.Name, username),
+            //    new Claim(ClaimTypes.Role, role)
+            //};
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
