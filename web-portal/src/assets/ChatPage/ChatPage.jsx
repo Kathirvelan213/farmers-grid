@@ -6,6 +6,7 @@ import { MyMessage } from "./components/MyMessage.jsx";
 import { OthersMessage } from "./components/OthersMessage.jsx";
 import { FaPaperPlane } from "react-icons/fa";
 import ScrollToBottom,{useScrollToBottom} from "react-scroll-to-bottom"
+import { ChatMenu } from "./components/ChatMenu.jsx";
 
 export function ChatPage(){
     const [sendMessage,setSendMessage]=useState('');
@@ -48,7 +49,9 @@ export function ChatPage(){
     }
 
     return(
-        <div className="chatPage bg-gray-300">
+        <div className="chatPage">
+        <ChatMenu></ChatMenu>
+        <div className="chatArea bg-gray-300">
             <ScrollToBottom className="chatContainer" followButtonClassName="followButton">
             {messageOrder.map(id=>{
                 return messages[id].senderId===User.id?
@@ -61,5 +64,6 @@ export function ChatPage(){
                 <button className='bg-gray-300 w-[20px]'><FaPaperPlane></FaPaperPlane></button>
             </form>
         </div>
+            </div>
     )
 }

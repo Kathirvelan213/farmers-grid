@@ -36,14 +36,27 @@
     height:92vh;
 }
 
-.chatPage{
+.chatArea{
     display: flex;
     flex-direction: column;
     height:100vh;
     
 }
 
+.chatPage{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    width: 100%;
+}
+
 .followButton{
     display: none;
 }
 
+.chatUser{
+
+}
+
+.chatMenu{
+
+}
