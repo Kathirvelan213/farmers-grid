@@ -1,7 +1,49 @@
-.myMessage{
-    background-color: green;
+.myMessageBox{
+    background-color: rgb(89, 195, 160);
+    justify-self: right;
+    border-radius: 25px 25px 0px 25px ;
 }
 
-.othersMessage{
-    background-color: blue;
+.othersMessageBox{
+    background-color: rgb(164, 179, 242);
+    justify-self: left;
+    border-radius: 25px 25px 25px 0px ;
 }
+
+.messageBox{
+    max-width:50%;
+    margin:5px;
+    padding: 5px 20px;
+    text-align: left;
+    align-content: center;
+    height: auto;
+    word-wrap: break-word;
+}
+
+.textbar{
+    width: stretch;
+    border-radius: 25px;
+    padding: 5px 20px;
+}
+
+.inputBar{
+    padding: 10px;
+    display: flex;
+    gap:10px;
+}
+
+.chatContainer{
+    height:92vh;
+}
+
+.chatPage{
+    display: flex;
+    flex-direction: column;
+    height:100vh;
+    
+}
+
+.followButton{
+    display: none;
+}
+
