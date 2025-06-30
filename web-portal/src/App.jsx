@@ -5,10 +5,12 @@ import {Routes,Route,BrowserRouter} from 'react-router-dom';
 import { ChatPage } from './assets/ChatPage/ChatPage';
 import { useEffect } from 'react';
 import SignalrService from './assets/SignalrService';
+import User from './assets/global/UserDetails';
 
 function App() {
   useEffect(()=>{
     SignalrService.startConnection();
+    User.getId();
   },[])
   return (
     <>

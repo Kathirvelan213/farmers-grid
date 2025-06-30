@@ -5,6 +5,7 @@ import {FaLock} from 'react-icons/fa'
 import { loginAPI } from "../../apiConsumer/identityAPI"
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
+import User from "../../global/UserDetails"
 export function LoginBox(){
     const [email, setEmail]=useState();
     const [password, setPassword]=useState();
@@ -12,11 +13,14 @@ export function LoginBox(){
 
     const handleLogin=async (e)=>{
         e.preventDefault();
-        const token=await loginAPI({
+        const result=await loginAPI({
             email:email,
             password:password
-        }).then(
-            (response)=>navigate('/dashboard')
+        }).then((response)=>{
+            navigate('/dashboard');
+            User.setId(response.data.user.id);
+            console.log(User.getId());
+        }
         ).catch((error)=>console.error(error))
         
     }

@@ -29,6 +29,12 @@ class SignalrService{
         }
     }
 
+    off(eventName){
+        if(this.connection){
+            this.connection.off(eventName)
+        }
+    }
+
     send(eventName,...args){
         if(this.connection){
             return this.connection.invoke(eventName,...args);
