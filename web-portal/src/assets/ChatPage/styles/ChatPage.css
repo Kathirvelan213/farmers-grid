@@ -40,12 +40,12 @@
     display: flex;
     flex-direction: column;
     height:100vh;
-    
+    background-color: rgb(241, 241, 241);
 }
 
 .chatPage{
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 25% 75%;
     width: 100%;
 }
 
@@ -53,10 +53,55 @@
     display: none;
 }
 
-.chatUser{
-
+.chatMenu{
+    padding:20px 5px;
+    text-align: left;
 }
 
-.chatMenu{
+.chatUser{
+    padding:10px;
+    border-radius: 15px;
+    width: stretch;
+    height: 70px;
+    display: flex;
+    gap:15px;
+    align-items: center;
+    transition: background-color ease 0.3s
+}
 
+.chatUser:hover{
+    background-color: rgb(247, 247, 247);
+}
+
+.chatList{
+    padding: 0px 5px;
+}
+
+.profilePic{
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    height: 100%;  
+}
+
+.searchBar{
+    height:35px;
+    border-radius: 10px;
+    border-color:green;
+    border-bottom: solid 2px rgb(89, 195, 160);
+    border-top: solid 1px rgb(120, 143, 235);
+    border-left: solid 1px rgb(84, 128, 205);
+    border-right: solid 2px rgb(57, 201, 179);
+}
+
+.searchPanel{
+    background-color: transparent;
+}
+
+.heading{
+    text-align: left;
+    font-weight: medium;
+    font-size: xx-large;
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    
 }

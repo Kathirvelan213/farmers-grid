@@ -52,7 +52,7 @@ export function ChatPage(){
     return(
         <div className="chatPage">
         <ChatMenu></ChatMenu>
-        <div className="chatArea bg-gray-300">
+        <div className="chatArea">
             <ScrollToBottom className="chatContainer" followButtonClassName="followButton">
             {messageOrder.map(id=>{
                 return messages[id].senderId===User.id?
@@ -62,7 +62,7 @@ export function ChatPage(){
             </ScrollToBottom>
             <form onSubmit={send} className="inputBar">
                 <input className='textbar' value={sendMessage} placeholder="Enter a message" onChange={handleMessageChange}></input>
-                <button className='bg-gray-300 w-[20px]'><FaPaperPlane></FaPaperPlane></button>
+                <button className='w-[30px] justify-items-center'><FaPaperPlane></FaPaperPlane></button>
             </form>
             </div>
         </div>

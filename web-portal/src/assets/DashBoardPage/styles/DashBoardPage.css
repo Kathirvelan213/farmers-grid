@@ -1,27 +1,8 @@
-.searchPanel {
-    width: 100%;
-    height: 90%;
-    background-color: rgba(239, 239, 239, 0.71);
-    align-content: center;
-    position: relative;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-}
 
 .itemGallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     overflow-y: auto;
-}
-
-.searchBar {
-    width: stretch;
-    max-width: 400px;
-    margin: 15px;
-    height: 40px;
-    padding: 10px;
-    border-radius: 15px;
 }
 
 .itemTile {
