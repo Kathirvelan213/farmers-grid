@@ -1,6 +1,7 @@
 ﻿using FarmersGrid.API.Data;
 using FarmersGrid.API.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -76,6 +77,14 @@ namespace FarmersGrid.API.Controllers
             }
             return Unauthorized();
 
+        }
+
+        [Authorize(AuthenticationSchemes = "CookieAuth")]
+        [HttpGet("id")]
+        public async Task<string> getMyId()
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return userId;
         }
 
         string _GenerateJwtToken(List<Claim> claims)

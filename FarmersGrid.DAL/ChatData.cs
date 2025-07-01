@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace FarmersGrid.DAL
 {
-    public record ChatDTO(int id,string otherUser);
+    public record ChatDTO(int id,string otherUserId, string otherUserName);
     public class ChatData
     {
         private readonly DbService _dbService;

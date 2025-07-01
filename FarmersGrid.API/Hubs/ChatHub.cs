@@ -18,7 +18,6 @@ namespace FarmersGrid.API.Hubs
         public override async Task OnConnectedAsync()
         {
             string userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            Console.WriteLine(userId);
             var chats =await _chatManager.GetChats(userId);
             foreach(ChatDTO chat in chats)
             {
@@ -32,7 +31,6 @@ namespace FarmersGrid.API.Hubs
         public async Task<Message> ReceiveAtHub(int chatId,string messageContent)
         {
             string userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            Console.WriteLine(userId);
             Message message=await _chatManager.StoreMessage(chatId, userId, messageContent);
             await Clients.Group(chatId.ToString()).SendAsync("receiveMessage",message);
             return message;
