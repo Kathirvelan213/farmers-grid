@@ -1,12 +1,11 @@
+import { getMyIDAPI } from "../apiConsumer/identityAPI";
+
 class User{
     id=null;
-    setId(id){
-        this.id=id;
-        sessionStorage.setItem("userId",id);
-    }
 
-    getId(){
-        this.id= sessionStorage.getItem("userId");
+    async getId(){
+        const result=await getMyIDAPI()
+        this.id=result.data;
     }
 }
 

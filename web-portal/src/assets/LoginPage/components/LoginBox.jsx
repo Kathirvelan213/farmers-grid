@@ -18,8 +18,7 @@ export function LoginBox(){
             password:password
         }).then((response)=>{
             navigate('/dashboard');
-            User.setId(response.data.user.id);
-            console.log(User.getId());
+            User.getId();
         }
         ).catch((error)=>console.error(error))
         

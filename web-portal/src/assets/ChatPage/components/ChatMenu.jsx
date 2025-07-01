@@ -12,6 +12,7 @@ export function ChatMenu(){
             setChats(Object.fromEntries(result.data.map(chat=>[chat.id,chat])));
         }
         fetchChats();
+        
     },[])
     return (
         <div className='chatMenu'>
@@ -23,10 +24,9 @@ export function ChatMenu(){
 }
 
 function ChatUser({chat}){
-    console.log(chat);
     return (
         <button className='chatUser'>
-            {chat.otherUser}
+            {chat.otherUserName}
         </button>
     )
 }

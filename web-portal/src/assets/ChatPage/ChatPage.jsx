@@ -26,6 +26,7 @@ export function ChatPage(){
         catch(e){
             console.error(e);
         }}
+        User.getId();
         fetchMessages();
 
         SignalrService.off("receiveMessage")
@@ -63,7 +64,7 @@ export function ChatPage(){
                 <input className='textbar' value={sendMessage} placeholder="Enter a message" onChange={handleMessageChange}></input>
                 <button className='bg-gray-300 w-[20px]'><FaPaperPlane></FaPaperPlane></button>
             </form>
-        </div>
             </div>
+        </div>
     )
 }
