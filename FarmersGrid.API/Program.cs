@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using FarmersGrid.API.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ builder.Services.AddSingleton(x =>
     new StorageSharedKeyCredential(
         builder.Configuration["AzureStorage:AccountName"],
         builder.Configuration["AzureStorage:AccountKey"]));
+
+builder.Services.AddSingleton<IUserIdProvider, UserIdProvider>();
 
 
 // Add services to the container.
@@ -100,6 +103,11 @@ builder.Services.AddScoped<ProductsManager>();
 
 builder.Services.AddScoped<ChatData>();
 builder.Services.AddScoped<ChatManager>();
+
+builder.Services.AddScoped<UserData>();
+builder.Services.AddScoped<UsersManager>();
+
+
 
 builder.Services.AddScoped<BlobServiceManager>();
 
