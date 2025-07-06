@@ -6,6 +6,7 @@ import { ChatPage } from './assets/ChatPage/ChatPage';
 import { useEffect } from 'react';
 import SignalrService from './assets/SignalrService';
 import User from './assets/global/UserDetails';
+import { UsersPage } from './assets/UsersPage/UsersPage';
 
 function App() {
   useEffect(()=>{
@@ -19,6 +20,7 @@ function App() {
         <Route path='/' element={<LoginPage/>}/>
         <Route path='/dashboard' element={<DashBoardPage/>}/>
         <Route path='/chat' element={<ChatPage/>}/>
+        <Route path='/users' element={<UsersPage/>}/>
       </Routes>
       </BrowserRouter>
     </>

@@ -17,7 +17,7 @@ export function ChatMenu({setCurrentChat}){
     },[])
     return (
         <div className='chatMenu'>
-            <label className='heading '>Chats</label>
+            <label className='heading'>Chats</label>
             <SearchPanel DisplayComponent={ChatList} filterKey={"otherUserName"} items={Object.values(chats)} searchPanelOverrideStyle='searchPanel' searchBarOverrideStyle='searchBar' placeholderText='Search for chat' displayComponentProps={{setCurrentChat:setCurrentChat}}></SearchPanel>
         </div>
     )

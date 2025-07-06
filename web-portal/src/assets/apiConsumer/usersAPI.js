@@ -9,4 +9,4 @@ const axiosInstance=axios.create({
     withCredentials:true
 })
 
-export const getChatsAPI=()=>axiosInstance.get('/api/users');   
+export const getUsersAPI=()=>axiosInstance.get('/api/users');
