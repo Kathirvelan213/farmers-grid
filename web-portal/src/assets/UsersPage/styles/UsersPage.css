@@ -1,14 +1,61 @@
 .usersPage{
-    
+
 }
 
 .usersList{
     background-color: beige;
     width: 100%;
     height: 100%;
-}
-
-.userInfoRecord{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+    gap:10px;
     
 }
 
+.userInfoRecord{
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    justify-items: center;
+    height:250px;
+}
+
+.profilePic{
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;  
+}
+
+.profileTopBar{
+    height:40px;
+    /* height:25%; */
+    display: flex;
+    gap: 10px;
+    justify-self: left;
+    margin: 3px;
+}
+
+.profileMiddleBar{
+    display: flex;
+    gap:20px;
+    flex:1;
+    justify-content: center;
+    
+}
+
+.nameDiv{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+}
+
+.bottomBar{
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    gap:10px;
+    width: stretch;
+}
