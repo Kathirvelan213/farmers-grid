@@ -105,7 +105,7 @@ builder.Services.AddScoped<ChatData>();
 builder.Services.AddScoped<ChatManager>();
 
 builder.Services.AddScoped<UserData>();
-builder.Services.AddScoped<UsersManager>();
+builder.Services.AddScoped<AppUsersManager>();
 
 
 

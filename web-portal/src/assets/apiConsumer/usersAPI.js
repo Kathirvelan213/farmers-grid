@@ -10,3 +10,5 @@ const axiosInstance=axios.create({
 })
 
 export const getUsersAPI=()=>axiosInstance.get('/api/users');
+
+export const getUserDataAPI=(userName)=>axiosInstance.get(`/api/users/${userName}`);

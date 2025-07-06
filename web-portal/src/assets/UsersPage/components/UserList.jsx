@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import '../styles/UsersPage.css'
 
 export function UsersList({users}){
@@ -27,6 +28,7 @@ export function UsersList({users}){
 }
 
 function UserInfoRecord({user}){
+    const navigate=useNavigate();
     return(
         <div className='userInfoRecord'>
             <div className='profileTopBar'>
@@ -49,7 +51,7 @@ function UserInfoRecord({user}){
             </div>
             <div className='bottomBar'>
                 <button className='w-[48%] bg-gray-400'>Message</button>
-                <button className='w-[48%] bg-green-400'>View</button>
+                <button className='w-[48%] bg-green-400' onClick={()=>navigate(`/user/${user.userName}`)}>View</button>
             </div>
         </div>
     )

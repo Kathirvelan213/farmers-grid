@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace FarmersGrid.BAL
 {
-    public class UsersManager
+    public class AppUsersManager
     {
         private readonly UserData _userData;
 
-        public UsersManager(UserData userData)
+        public AppUsersManager(UserData userData)
         {
             _userData=userData;
         }
@@ -21,6 +21,10 @@ namespace FarmersGrid.BAL
         public async Task<IEnumerable<AspNetUser>> GetUsers()
         {
             return await _userData.GetUsers();
+        }
+        public async Task<IEnumerable<AspNetUser>> GetUserData(string userId)
+        {
+            return await _userData.GetUserData(userId);
         }
     }
 }

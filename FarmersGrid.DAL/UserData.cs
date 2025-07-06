@@ -22,5 +22,11 @@ namespace FarmersGrid.DAL
             DynamicParameters parameters = new DynamicParameters();
             return await _dbService.QueryAsync<AspNetUser>("usp_GetUsers", parameters);
         }
+        public async Task<IEnumerable<AspNetUser>> GetUserData(string userId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@userId", userId);
+            return await _dbService.QueryAsync<AspNetUser>("usp_GetUserDetails", parameters);
+        }
     }
 }
