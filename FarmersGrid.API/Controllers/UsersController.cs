@@ -10,8 +10,6 @@ namespace FarmersGrid.API.Controllers
     [Authorize(AuthenticationSchemes = "CookieAuth")]
     [ApiController]
     [Route("api/[controller]")]
-
-
     public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

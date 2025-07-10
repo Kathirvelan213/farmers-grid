@@ -6,7 +6,7 @@ import { loginAPI } from "../../apiConsumer/identityAPI"
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import User from "../../global/UserDetails"
-export function LoginBox(){
+export function LoginBox({isRegisterMode}){
     const [email, setEmail]=useState();
     const [password, setPassword]=useState();
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ export function LoginBox(){
         
     }
     return (<>
-        <form className="loginBox" onSubmit={handleLogin}>
+        <form className="loginForm" onSubmit={handleLogin}>
             <img src="/Logo1-removebg-preview.png" alt="Logo" className="appLogo"/>
             <InputField placeholder="Email" Icon={FaUser} value={email} setValue={setEmail}></InputField>
             <InputField placeholder="Password" Icon={FaLock} value={password} setValue={setPassword}></InputField>

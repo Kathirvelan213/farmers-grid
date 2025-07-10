@@ -1,20 +1,26 @@
 
-.loginBox{
+.centerPanel{
     background-color: rgba(245, 245, 220, 0.826);
     height:500px;
     width: 500px;
     align-self: center;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* position: relative; */
-    /* transition: ; */
+    border-radius: 250px;
+    transition: width 0.7s ease,height 0.7s ease,border-radius 0.7s ease ;
+    align-content: center;
 }
 
-.loginBox:focus{
+.loginForm{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    /* position: relative; */
 
+}
+
+.registerPanel{
+    width: 800px;
+    height: 450px;
+    border-radius: 50px;
 }
 
 .inputFields{
@@ -37,13 +43,18 @@
     background-image: url('/LoginPageBg3.jpg');
     background-size: cover;
     background-position: center;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    /* flex-direction: column; */
+    grid-template-columns: 1fr 2.5fr 1fr;
     justify-content: center;
     align-items: center;
+    justify-items: center;
     min-height: 100vh;
     min-width: 100vw;
     margin: 0px;
+    overflow: hidden;
+    position: relative;
+    gap:20px;
 }
 .underline{
     position: absolute;
@@ -91,24 +102,39 @@
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.rightRegisterPanel{
-    border-radius: 0% 50% 50% 0%;
+
+.sideRegisterPanel{
+    border-radius: 50px;
     background-color: rgba(245, 245, 220, 0.826);
-    height:500px;
-    width: 500px;
+    height:0px;
+    width: 300px;
     align-self: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    justify-self: center;
+    transition: height 0.5s ease;
+    overflow: hidden;
+    transition: width 0.7s ease,height 0.7s ease;
 }
 
-.leftRegisterPanel{
-    border-radius: 50% 0% 0% 50%;
-    background-color: rgba(245, 245, 220, 0.826);
-    height:500px;
-    width: 500px;
-    align-self: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.sideRegisterPanel.expand{
+    height:450px;
+}
+
+.map{
+    height: 100%;
+    width: 100%;
+}
+
+.mapContainer{
+    height: 350px;
+    width: 90%;
+    border: solid white;
+      position: relative;
+
+}
+
+.mapTile{
 }
