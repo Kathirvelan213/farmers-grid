@@ -6,7 +6,7 @@ import { loginAPI } from "../../apiConsumer/identityAPI"
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import User from "../../global/UserDetails"
-export function LoginBox({isRegisterMode}){
+export function LoginBox(){
     const [email, setEmail]=useState();
     const [password, setPassword]=useState();
     const navigate = useNavigate();

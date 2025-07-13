@@ -7,22 +7,6 @@ export function UsersList({users}){
             {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
             {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
             {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
-            {users.map(user=><UserInfoRecord key={user.id} user={user}/>)}
         </div>
     )
 }

@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using FarmersGrid.BAL;
 
 namespace FarmersGrid.API.Controllers
 {
@@ -16,10 +17,12 @@ namespace FarmersGrid.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly AppUsersManager _appUserManager;
         private readonly IConfiguration _config;
 
-        public AuthController(UserManager<ApplicationUser> userManager, IConfiguration config)
+        public AuthController(UserManager<ApplicationUser> userManager, IConfiguration config,AppUsersManager appUsersManager)
         {
+            _appUserManager = appUsersManager;
             _userManager = userManager;
             _config = config;
         }
@@ -27,7 +30,7 @@ namespace FarmersGrid.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDTO regiterDto)
         {
-            var user = new ApplicationUser { UserName = regiterDto.Username, Email = regiterDto.Email, };
+            var user = new ApplicationUser { UserName = regiterDto.Username, Email = regiterDto.Email, PhoneNumber=regiterDto.PhoneNumber};
             var userCreatedResult = await _userManager.CreateAsync(user, regiterDto.Password);
 
             if (!userCreatedResult.Succeeded)
@@ -41,6 +44,8 @@ namespace FarmersGrid.API.Controllers
                 await _userManager.DeleteAsync(user);
                 return BadRequest(roleAssignedResult.Errors);
             }
+            await _appUserManager.InsertInitialUserDetails(user.Id, regiterDto.Coordinates);
+
             return Ok("Successfully registered");
 
         }

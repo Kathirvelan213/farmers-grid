@@ -33,5 +33,7 @@ namespace FarmersGrid.API.Controllers
             var user = await _userManager.FindByNameAsync(UserName);
             return await _AppUsersManager.GetUserData(user.Id);
         }
+
+        
     }
 }

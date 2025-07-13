@@ -136,5 +136,24 @@
 
 }
 
-.mapTile{
+.registerPanel{
+    overflow: hidden;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    gap: 10px;
 }
+
+.registerPanel.hidden{
+
+}
+
+.registerPanel input{
+    height: 35px;
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+}
+

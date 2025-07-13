@@ -26,5 +26,9 @@ namespace FarmersGrid.BAL
         {
             return await _userData.GetUserData(userId);
         }
+        public async Task<int> InsertInitialUserDetails(string userId,Coordinates coordinates)
+        {
+            return await _userData.InsertInitialUserDetails(userId,coordinates);
+        }
     }
 }

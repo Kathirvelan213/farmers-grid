@@ -24,10 +24,10 @@ export function RightRegisterPanel({coordinates,setCoordinates,isRegisterMode}){
     )
 }
 
-export function CenterPanel({isRegisterMode}){
+export function CenterPanel({isRegisterMode,formData,setFormData,handleRegister}){
     return(
         <div className={`centerPanel ${isRegisterMode?"registerPanel":""}`}>
-            {isRegisterMode?<RegisterForm isRegisterMode={isRegisterMode}/>:<LoginBox/>}
+            {isRegisterMode?<RegisterForm formData={formData} setFormData={setFormData} handleRegister={handleRegister}/>:<LoginBox/>}
         </div>
     )
 }

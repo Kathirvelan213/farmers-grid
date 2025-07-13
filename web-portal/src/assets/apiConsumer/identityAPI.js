@@ -10,6 +10,8 @@ const axiosInstance=axios.create({
     withCredentials:true
 })
 
-export const loginAPI=(loginDto)=>axiosInstance.post('/api/auth/login',loginDto);   
+export const loginAPI=(loginDto)=>axiosInstance.post('/api/auth/login',loginDto); 
+
+export const registerAPI=(regiterDTO)=>axiosInstance.post('/api/auth/register',regiterDTO);   
 
 export const getMyIDAPI=()=>axiosInstance.get('api/auth/id');
