@@ -25,9 +25,9 @@ export function LoginBox(){
     }
     return (<>
         <form className="loginForm" onSubmit={handleLogin}>
-            <img src="/Logo1-removebg-preview.png" alt="Logo" className="appLogo"/>
+            <img src="/farmers-grid-logo.png" alt="Logo" className="appLogo"/>
             <InputField placeholder="Email" Icon={FaUser} value={email} setValue={setEmail}></InputField>
-            <InputField placeholder="Password" Icon={FaLock} value={password} setValue={setPassword}></InputField>
+            <InputField placeholder="Password" Icon={FaLock} value={password} setValue={setPassword} isPassword={true}></InputField>
             <button className="loginButton" color="rgb(8, 81, 2)">Login</button>
         </form>
     </>

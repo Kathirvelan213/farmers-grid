@@ -3,7 +3,7 @@
     background-color: rgba(245, 245, 220, 0.826);
     height:500px;
     width: 500px;
-    align-self: center;
+    /* align-self: center; */
     border-radius: 250px;
     transition: width 0.7s ease,height 0.7s ease,border-radius 0.7s ease ;
     align-content: center;
@@ -17,9 +17,9 @@
 
 }
 
-.registerPanel{
-    width: 800px;
-    height: 450px;
+.centerPanel.registerMode{
+    width: 100%;
+    height: 60%;
     border-radius: 50px;
 }
 
@@ -104,23 +104,27 @@
 
 
 .sideRegisterPanel{
-    border-radius: 50px;
+    border-radius: 5px;
     background-color: rgba(245, 245, 220, 0.826);
     height:0px;
-    width: 300px;
+    width: 80%;
     align-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     justify-self: center;
-    transition: height 0.5s ease;
     overflow: hidden;
-    transition: width 0.7s ease,height 0.7s ease;
+    transition: height 0.7s ease,border-radius 0.7s ease;
+}
+
+.sideRegisterPanel.leftRegisterPanel{
+    gap:10px;
 }
 
 .sideRegisterPanel.expand{
-    height:450px;
+    height:50%;
+    border-radius: 20px;
 }
 
 .map{
@@ -132,28 +136,86 @@
     height: 350px;
     width: 90%;
     border: solid white;
-      position: relative;
-
+    
 }
 
 .registerPanel{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 15% 65% 20%;
+    height: 100%;
+    align-items: center;
     overflow: hidden;
+    padding: 50px;
+    gap:50px
+}
+
+.registerInputPanel{
     align-items: center;
     display: flex;
     flex-direction: column;
-    padding: 10px;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
+    justify-items: center;
+    
 }
 
-.registerPanel.hidden{
 
-}
-
-.registerPanel input{
+.registerInputPanel input{
     height: 35px;
-    width: 80%;
+    width: 100%;
     padding: 10px;
     border-radius: 5px;
 }
 
+.rolesButton{
+    flex: 1;
+    height: 50%;
+    width: 100%;
+    transition: transform;
+    
+}
+
+.rolesButton.roleSelected{
+    /* transform: scale(1.01); */
+      /* box-shadow: 0 0 10px 4px #1baf2f; */
+
+}
+
+.rolesButton.roleSelected:hover{
+    filter:none;
+    transform:none;
+}
+
+
+.rolesButton:focus{
+    outline: none;
+}
+
+.roleInfoPanel{
+    border:5px dashed rgba(3, 150, 10, 0.432) ;
+    height: 100%;
+    width: stretch;
+    box-sizing: border-box;
+    background-color: rgba(15, 94, 25, 0.178);
+    background-color: rgba(9, 165, 30, 0.466);
+}
+
+.appLogoSmall{
+    height: 100px;
+    width: auto;
+}
+
+.createAccountHeading{
+    font: 200;
+}
+
+.registerHeading{
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    justify-self:left;
+    column-gap:5px;
+}

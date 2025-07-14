@@ -11,35 +11,32 @@ export function LoginPage(){
         email:"",
         password:"",
         confirmPassword:"",
-        phoneNumber:""
+        phoneNumber:"",
+        role:""
     })
 
      async function handleRegister(){
-        if(coordinates==null || formData.password!=formData.confirmPassword){
-            console.log("failed");
+        if(role==""){
+            console.log("select role");
             return;
         }
-        console.log({email: formData.email,
-            username: formData.userName,
-            password: formData.password,
-            phoneNumber: formData.phoneNumber,
-            coordinates: {
-    latitude: coordinates.lat,
-    longitude: coordinates.lng
-  },
-            role: "seller"})
+        if(coordinates==null){
+            console.log("select location");
+            return;
+        } 
+        if(formData.password!=formData.confirmPassword){
+            console.log("passwords do not match");
+            return;
+        }
         const result=await registerAPI({email: formData.email,
             username: formData.userName,
             password: formData.password,
             phoneNumber: formData.phoneNumber,
             coordinates: {
-    latitude: coordinates.lat,
-    longitude: coordinates.lng
-  },
-            role: "seller"});
-        console.log(result);
-
-        
+                latitude: coordinates.lat,
+                longitude: coordinates.lng
+            },
+            role: formData.role});      
     }
     return (
     <>
@@ -53,7 +50,7 @@ export function LoginPage(){
                 transition={{ duration: 0.7 }}>
                 </motion.div>}
             </AnimatePresence> */}
-            <LeftRegisterPanel isRegisterMode={registerMode}/>
+            <LeftRegisterPanel isRegisterMode={registerMode} formData={formData} setFormData={setFormData}/>
             <CenterPanel isRegisterMode={registerMode} formData={formData} setFormData={setFormData} handleRegister={handleRegister}/>
             <RightRegisterPanel coordinates={coordinates} setCoordinates={setCoordinates} isRegisterMode={registerMode}/>
         </div>
