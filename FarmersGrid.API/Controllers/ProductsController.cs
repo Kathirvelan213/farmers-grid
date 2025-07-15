@@ -49,9 +49,5 @@ namespace FarmersGrid.API.Controllers
         {
             return await _productsManager.DeleteSellerProduct(removeProductDTO.id);
         }
-        
-
-
-
     }
 }

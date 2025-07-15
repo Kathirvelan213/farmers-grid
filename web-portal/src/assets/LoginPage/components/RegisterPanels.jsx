@@ -36,3 +36,4 @@ export function CenterPanel({isRegisterMode,formData,setFormData,handleRegister}
         </div>
     )
 }
+

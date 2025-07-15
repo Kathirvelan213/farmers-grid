@@ -101,6 +101,9 @@ builder.Services.AddScoped<DbService>();
 builder.Services.AddScoped<ProductsData>();
 builder.Services.AddScoped<ProductsManager>();
 
+builder.Services.AddScoped<RequestProductsData>();
+builder.Services.AddScoped<RequestProductsManager>();
+
 builder.Services.AddScoped<ChatData>();
 builder.Services.AddScoped<ChatManager>();
 
