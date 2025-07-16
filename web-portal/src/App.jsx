@@ -8,6 +8,7 @@ import SignalrService from './assets/SignalrService';
 import User from './assets/global/UserDetails';
 import { UsersPage } from './assets/UsersPage/UsersPage';
 import { ProfilePage } from './assets/ProfilePage/ProfilePage';
+import {RequestProductsPage} from './assets/RequestProductsPage/RequestProductsPage'
 
 function App() {
   useEffect(()=>{
@@ -23,6 +24,7 @@ function App() {
         <Route path='/chat' element={<ChatPage/>}/>
         <Route path='/users' element={<UsersPage/>}/>
         <Route path='/user/:userName' element={<ProfilePage/>}/>
+        <Route path='requests' element={<RequestProductsPage/>}/>
       </Routes>
       </BrowserRouter>
     </>
