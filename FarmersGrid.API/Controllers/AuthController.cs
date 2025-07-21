@@ -12,6 +12,7 @@ using FarmersGrid.BAL;
 
 namespace FarmersGrid.API.Controllers
 {
+    public record UserInfo(string Email, string UserName,string Id,string Role);
     [ApiController]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
@@ -62,7 +63,8 @@ namespace FarmersGrid.API.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, loginDto.Email),
+                    new Claim(ClaimTypes.Email, loginDto.Email),
+                    new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Role, role)
                 };
                 string token = _GenerateJwtToken(claims);
@@ -85,11 +87,16 @@ namespace FarmersGrid.API.Controllers
         }
 
         [Authorize(AuthenticationSchemes = "CookieAuth")]
-        [HttpGet("id")]
-        public async Task<string> getMyId()
+        [HttpGet("info")]
+        public async Task<UserInfo> getMyInfo()
         {
-            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return userId;
+            return new UserInfo
+            (
+                User.FindFirstValue(ClaimTypes.Email),
+                User.FindFirstValue(ClaimTypes.Name),
+                User.FindFirstValue(ClaimTypes.NameIdentifier),
+                User.FindFirstValue(ClaimTypes.Role)
+            );
         }
 
         string _GenerateJwtToken(List<Claim> claims)
