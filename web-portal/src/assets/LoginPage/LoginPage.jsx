@@ -1,10 +1,15 @@
 import { useState } from "react"
 import {motion, AnimatePresence} from 'framer-motion'
 import {LeftRegisterPanel,CenterPanel,RightRegisterPanel} from './components/RegisterPanels'
-import { registerAPI } from "../apiConsumer/identityAPI";
+import { loginAPI, registerAPI } from "../apiConsumer/identityAPI";
+import { useAuth } from "../global/components/AuthProvider";
+import { useNavigate } from "react-router-dom";
 export function LoginPage(){
     const [registerMode,setRegisterMode]=useState(false);
     const[coordinates,setCoordinates]=useState(null);
+    const {user,loading,getMyInfo,clearMyInfo}=useAuth();
+    const navigate=useNavigate();
+    
 
     const [formData,setFormData]=useState({
         userName:"",
@@ -28,15 +33,28 @@ export function LoginPage(){
             console.log("passwords do not match");
             return;
         }
-        const result=await registerAPI({email: formData.email,
-            username: formData.userName,
-            password: formData.password,
-            phoneNumber: formData.phoneNumber,
-            coordinates: {
-                latitude: coordinates.lat,
-                longitude: coordinates.lng
-            },
-            role: formData.role});      
+        // try{
+
+            const result=await registerAPI({email: formData.email,
+                username: formData.userName,
+                password: formData.password,
+                phoneNumber: formData.phoneNumber,
+                coordinates: {
+                    latitude: coordinates.lat,
+                    longitude: coordinates.lng
+                },
+                role: formData.role});  
+
+                await loginAPI({
+                    email:formData.email,
+                    password:formData.password
+                })
+                await getMyInfo();
+                navigate('/dashboard');
+            // }
+            // catch{
+            //     console.log("error registering")
+            // }
     }
     return (
     <>

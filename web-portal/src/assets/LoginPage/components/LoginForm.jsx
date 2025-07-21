@@ -11,7 +11,7 @@ import { useAuth } from "../../global/components/AuthProvider";
 export function LoginBox(){
     const [email, setEmail]=useState();
     const [password, setPassword]=useState();
-    const {user,getMyInfo,clearMyInfo}=useAuth();
+    const {user,loading,getMyInfo,clearMyInfo}=useAuth();
     const navigate = useNavigate();
 
     const handleLogin=async (e)=>{
