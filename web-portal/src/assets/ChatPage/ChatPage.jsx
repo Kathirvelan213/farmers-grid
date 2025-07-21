@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import SignalrService from "../SignalrService"
 import { getMessagesAPI } from "../apiConsumer/chatAPI";
-import User from "../global/UserDetails.js"
+// import User from "../global/UserDetails.js"
 import { MyMessage,OthersMessage } from "./components/Message.jsx";
 import { FaPaperPlane } from "react-icons/fa";
 import ScrollToBottom,{useScrollToBottom} from "react-scroll-to-bottom"
 import { ChatMenu } from "./components/ChatMenu.jsx";
 import { CurrentChatNamePane } from "./components/CurrentChatNamePane.jsx";
+import { useAuth } from "../global/components/AuthProvider.jsx";
 
 export function ChatPage(){
     const [sendMessage,setSendMessage]=useState('');
@@ -14,10 +15,9 @@ export function ChatPage(){
     const [messageOrder,setMessageOrder]=useState([]);
     const [currentChat,setCurrentChat]=useState({});
     const scrollToBottom=useScrollToBottom();
+    const {user}=useAuth();
 
-    useEffect(()=>{
-        User.getId();
-        
+    useEffect(()=>{              
         SignalrService.off("receiveMessage")
         SignalrService.on("receiveMessage",(message)=>{
             setMessages(prev=>({...prev,[message.id]:message}));
@@ -59,7 +59,7 @@ export function ChatPage(){
                 <CurrentChatNamePane chat={currentChat}/>
                 <ScrollToBottom className="chatContainer" followButtonClassName="followButton">
                     {messageOrder.map(id=>{
-                        return messages[id].senderId===User.id?
+                        return messages[id].senderId===user.id?
                         <MyMessage key={id} message={messages[id]}></MyMessage>:
                         <OthersMessage key={id} message={messages[id]}></OthersMessage>;
                     })}

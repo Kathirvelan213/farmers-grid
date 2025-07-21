@@ -14,4 +14,4 @@ export const loginAPI=(loginDto)=>axiosInstance.post('/api/auth/login',loginDto)
 
 export const registerAPI=(regiterDTO)=>axiosInstance.post('/api/auth/register',regiterDTO);   
 
-export const getMyIDAPI=()=>axiosInstance.get('api/auth/id');
+export const getMyInfoAPI=()=>axiosInstance.get('api/auth/info');

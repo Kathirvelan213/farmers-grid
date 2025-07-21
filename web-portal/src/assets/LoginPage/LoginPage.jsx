@@ -16,7 +16,7 @@ export function LoginPage(){
     })
 
      async function handleRegister(){
-        if(role==""){
+        if(formData.role==""){
             console.log("select role");
             return;
         }

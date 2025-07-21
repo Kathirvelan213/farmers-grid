@@ -5,27 +5,47 @@ import {Routes,Route,BrowserRouter} from 'react-router-dom';
 import { ChatPage } from './assets/ChatPage/ChatPage';
 import { useEffect } from 'react';
 import SignalrService from './assets/SignalrService';
-import User from './assets/global/UserDetails';
+// import User from './assets/global/UserDetails';
 import { UsersPage } from './assets/UsersPage/UsersPage';
 import { ProfilePage } from './assets/ProfilePage/ProfilePage';
 import {RequestProductsPage} from './assets/RequestProductsPage/RequestProductsPage'
+import { Navigate } from "react-router-dom";
+import { useAuth } from './assets/global/components/AuthProvider';
+import { UnauthorizedPage } from './assets/UnauthorizedPage/UnauthorizedPage';
+
+
+function ProtectedRoute({children,allowedRoles}){
+    const {user,loading,getMyInfo,clearMyInfo}=useAuth();
+    if(loading){
+      return <div>loading</div>
+    }
+    if(!user){
+        return <Navigate to='/'/>;
+    }
+    if(allowedRoles && !allowedRoles.includes(user.role)){
+        return <Navigate to='/unauthorized'/>;
+    }
+    return children;
+}
+
 
 function App() {
   useEffect(()=>{
     SignalrService.startConnection();
-    User.getId();
+    // User.getId();
   },[])
   return (
     <>
       <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<LoginPage/>}/>
-        <Route path='/dashboard' element={<DashBoardPage/>}/>
-        <Route path='/chat' element={<ChatPage/>}/>
-        <Route path='/users' element={<UsersPage/>}/>
-        <Route path='/user/:userName' element={<ProfilePage/>}/>
-        <Route path='requests' element={<RequestProductsPage/>}/>
-      </Routes>
+        <Routes>
+          <Route path='/' element={<LoginPage/>}/>
+          <Route path='/dashboard' element={<DashBoardPage/>}/>
+          <Route path='/chat' element={<ChatPage/>}/>
+          <Route path='/users' element={<UsersPage/>}/>
+          <Route path='/user/:userName' element={<ProfilePage/>}/>
+          <Route path='requests' element={<ProtectedRoute allowedRoles={['Retailer']}><RequestProductsPage/> </ProtectedRoute>}/>
+          <Route path='/unauthorized' element={<UnauthorizedPage/>}/>
+        </Routes>
       </BrowserRouter>
     </>
   )
