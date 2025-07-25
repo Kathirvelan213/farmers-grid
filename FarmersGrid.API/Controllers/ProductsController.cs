@@ -42,7 +42,8 @@ namespace FarmersGrid.API.Controllers
         [HttpPut("change-price")]
         public async Task<int> ChangePrice([FromBody] ChangePriceDTO changePriceDTO)
         {
-            return await _productsManager.UpdateSellerProduct(changePriceDTO.id,changePriceDTO.unitPrice);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return await _productsManager.UpdateSellerProduct(userId,changePriceDTO.id,changePriceDTO.unitPrice);
         }
         [HttpDelete("remove-product")]
         public async Task<int> RemoveProduct([FromBody] RemoveProductDTO removeProductDTO)

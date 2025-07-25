@@ -110,10 +110,10 @@ builder.Services.AddScoped<ChatManager>();
 builder.Services.AddScoped<UserData>();
 builder.Services.AddScoped<AppUsersManager>();
 
-
+builder.Services.AddScoped<ProductMatchData>();
+builder.Services.AddScoped<ProductMatchManager>();
 
 builder.Services.AddScoped<BlobServiceManager>();
-
 
 var app = builder.Build();
 

@@ -37,7 +37,6 @@ namespace FarmersGrid.DAL
             parameters.Add("@latitude", coordinates.Latitude);
             parameters.Add("@longitude", coordinates.Longitude);
             return await _dbService.ExecuteAsync("usp_InsertInitialUserDetails", parameters);
-
         }
         public async Task<int> InsertBlankMatchRecords(string userId)
         {
@@ -45,5 +44,7 @@ namespace FarmersGrid.DAL
             parameters.Add("@userId", userId);
             return await _dbService.ExecuteAsync("usp_InsertBlankMatchRecords", parameters);
         }
+        
+
     }
 }

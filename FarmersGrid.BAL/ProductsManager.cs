@@ -6,10 +6,12 @@ namespace FarmersGrid.BAL
     public class ProductsManager
     {
         private ProductsData _productsData;
+        private ProductMatchData _productMatchData;
 
-        public ProductsManager(ProductsData productsData)
+        public ProductsManager(ProductsData productsData,ProductMatchData productMatchData)
         {
             _productsData=productsData;
+            _productMatchData = productMatchData;
         }
         public async Task<IEnumerable<Product>> GetProductsData()
         {
@@ -28,9 +30,10 @@ namespace FarmersGrid.BAL
         {
             return await _productsData.DeleteSellerProduct(id);
         }
-        public async Task<int> UpdateSellerProduct(int id,float price)
+        public async Task<int> UpdateSellerProduct(string userId,int id,float price)
         {
-            return await _productsData.UpdateSellerProduct(id,price);
+            await _productsData.UpdateSellerProduct(id,price);
+            return await _productMatchData.RefreshMatchScores(userId);
         }
         
     }
