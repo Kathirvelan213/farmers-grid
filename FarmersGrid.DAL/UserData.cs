@@ -17,9 +17,10 @@ namespace FarmersGrid.DAL
             _dbService = dbService;
         }
 
-        public async Task<IEnumerable<AspNetUser>> GetUsers()
+        public async Task<IEnumerable<AspNetUser>> GetUsers(string role)
         {
             DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@role", role);
             return await _dbService.QueryAsync<AspNetUser>("usp_GetUsers", parameters);
         }
         public async Task<IEnumerable<AspNetUser>> GetUserData(string userId)
@@ -37,6 +38,12 @@ namespace FarmersGrid.DAL
             parameters.Add("@longitude", coordinates.Longitude);
             return await _dbService.ExecuteAsync("usp_InsertInitialUserDetails", parameters);
 
+        }
+        public async Task<int> InsertBlankMatchRecords(string userId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@userId", userId);
+            return await _dbService.ExecuteAsync("usp_InsertBlankMatchRecords", parameters);
         }
     }
 }

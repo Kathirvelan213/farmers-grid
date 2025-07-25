@@ -18,9 +18,10 @@ namespace FarmersGrid.BAL
             _userData=userData;
         }
 
-        public async Task<IEnumerable<AspNetUser>> GetUsers()
+        public async Task<IEnumerable<AspNetUser>> GetUsers(string role)
         {
-            return await _userData.GetUsers();
+            var result= await _userData.GetUsers(role);
+            return result;
         }
         public async Task<IEnumerable<AspNetUser>> GetUserData(string userId)
         {
@@ -28,7 +29,12 @@ namespace FarmersGrid.BAL
         }
         public async Task<int> InsertInitialUserDetails(string userId,Coordinates coordinates)
         {
-            return await _userData.InsertInitialUserDetails(userId,coordinates);
+            await _userData.InsertInitialUserDetails(userId,coordinates);
+            return await _userData.InsertBlankMatchRecords(userId);
+        }
+        public async Task<int> blankInsertionTest(string userId)
+        {
+            return await _userData.InsertBlankMatchRecords(userId);
         }
     }
 }

@@ -21,10 +21,10 @@ namespace FarmersGrid.API.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<AspNetUser>> GetUsers()
+        [HttpGet("roles/{role}")]
+        public async Task<IEnumerable<AspNetUser>> GetUsers(string role)
         {
-            return await _AppUsersManager.GetUsers();
+            return await _AppUsersManager.GetUsers(role);
         }
 
         [HttpGet("{UserName}")]
@@ -32,6 +32,12 @@ namespace FarmersGrid.API.Controllers
         {
             var user = await _userManager.FindByNameAsync(UserName);
             return await _AppUsersManager.GetUserData(user.Id);
+        }
+        [HttpGet("test/{UserName}")]
+        public async Task<int> initialInsertionDummyAPI(string UserName)
+        {
+            var user = await _userManager.FindByNameAsync(UserName);
+            return await _AppUsersManager.blankInsertionTest(user.Id);
         }
 
         

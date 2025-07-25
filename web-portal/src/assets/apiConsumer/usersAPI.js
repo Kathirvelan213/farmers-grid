@@ -9,6 +9,6 @@ const axiosInstance=axios.create({
     withCredentials:true
 })
 
-export const getUsersAPI=()=>axiosInstance.get('/api/users');
+export const getUsersAPI=()=>axiosInstance.get('/api/users/roles/seller');
 
 export const getUserDataAPI=(userName)=>axiosInstance.get(`/api/users/${userName}`);

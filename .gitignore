@@ -1,5 +1,4 @@
-#Others
-sqlCommands/
+
 
 # Build results
 bin/
@@ -23,7 +22,7 @@ secrets.json
 # Visual Studio files
 .vs/
 
-# Environment config files (optional - if you don’t want them in version control)
+# Environment config files (optional - if you donï¿½t want them in version control)
 appsettings.Development.json
 
 # Others (optional)

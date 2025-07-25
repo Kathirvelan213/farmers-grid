@@ -14,4 +14,9 @@ namespace FarmersGrid.Models
         public string phoneNumber { get; set; }
         public string roleId { get; set; }
     }
+    public class AspNetUserMatchObject
+    {
+        public AspNetUser aspNetUser { get; set; }
+        public float matchPercentage { get; set; }
+    }
 }

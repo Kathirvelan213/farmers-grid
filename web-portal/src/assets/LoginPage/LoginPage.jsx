@@ -33,7 +33,7 @@ export function LoginPage(){
             console.log("passwords do not match");
             return;
         }
-        // try{
+        try{
 
             const result=await registerAPI({email: formData.email,
                 username: formData.userName,
@@ -51,10 +51,10 @@ export function LoginPage(){
                 })
                 await getMyInfo();
                 navigate('/dashboard');
-            // }
-            // catch{
-            //     console.log("error registering")
-            // }
+            }
+            catch{
+                console.log("error registering")
+            }
     }
     return (
     <>
