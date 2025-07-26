@@ -2,6 +2,7 @@
 using FarmersGrid.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 using System.Security.Claims;
 
 namespace FarmersGrid.API.Controllers
@@ -16,16 +17,22 @@ namespace FarmersGrid.API.Controllers
         public record AddRequProductDTO(int productId, float unitPrice);
         public record RemoveRequProductDTO(int id);
         public record ChangeRequPriceDTO(int id, float unitPrice);
+        public record RetailerDTO(string retailerId);
 
         public RequestProductsController(RequestProductsManager requestProductsManager)
         {
             _requestProductsManager = requestProductsManager;
         }
-        [HttpGet("get-request-products")]
-        public async Task<IEnumerable<MyProduct>> GetRetailerRequestProducts()
+        [HttpGet("get-my-request-products")]
+        public async Task<IEnumerable<MyProduct>> GetMyRequestProducts()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return await _requestProductsManager.GetRetailerRequestProducts(userId);
+        }
+        [HttpGet("get-retailer-request-products")]
+        public async Task<IEnumerable<MyProduct>> GetRetailerRequestProducts([FromBody] RetailerDTO retailerDTO)
+        {
+            return await _requestProductsManager.GetRetailerRequestProducts(retailerDTO.retailerId);
         }
         [HttpPost("add-product")]
         public async Task<int> AddRetailerRequestProduct([FromBody] AddRequProductDTO addRequProductDTO)

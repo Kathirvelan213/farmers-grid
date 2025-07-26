@@ -19,6 +19,7 @@ export function ProfilePage(){
             
             if(user.role=='Seller'){
                 const result1=await getMyProductsAPI();
+                setMyProducts(result1.data)
             }
         }
         fetchUserData();

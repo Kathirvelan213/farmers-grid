@@ -34,12 +34,10 @@ export function MyProductsPanel({className}){
         const getMyProducts=async()=>{
             try{
                 const result=await getMyRequestProductsAPI();
-                setMyProducts(Object.fromEntries(result.data.map(product=>{
-                    var productObj=allProductsDict[product.productId]; 
-                    productObj["rowId"]=product.id;
-                    productObj["unitPrice"]=product.unitPrice;
-                    return [product.productId,productObj];
-                })));
+                // console.log(1);
+                
+                // console.log(result.data);
+                setMyProducts(Object.fromEntries(result.data.map(product=>[product.id,product])));
             }
             catch(e){
                 console.error(e);
@@ -51,7 +49,7 @@ export function MyProductsPanel({className}){
     },[]);
     useEffect(()=>{
         setMoreProducts(Object.fromEntries(Object.entries(allProducts).filter(([productId,product])=>
-            !(productId in myProducts)
+            !(productId in myProducts)  
         )))
     },[myProducts])
     async function handleInsert (){
@@ -64,7 +62,7 @@ export function MyProductsPanel({className}){
                 unitPrice:unitPrice
             }
             const newRowId=await AddProductsAPI(insertObj);
-            setMyProducts(prev=>({...prev,[insertObj.productId]:{...toInsert,["unitPrice"]:unitPrice,["rowId"]:newRowId.data}}));
+            setMyProducts(prev=>({...prev,[insertObj.productId]:{...toInsert,["unitPrice"]:unitPrice,["id"]:newRowId.data}}));
         }
         catch(e){
             console.error(e);
@@ -72,7 +70,7 @@ export function MyProductsPanel({className}){
     }
     return (
         <div className={className}>
-        <SearchPanel items={Object.values(myProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"rowId",setItems:setMyProducts}}></SearchPanel>
+        <SearchPanel items={Object.values(myProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"id",setItems:setMyProducts}}></SearchPanel>
         {insertState&&
         <div>
             <AddProductPanel item={toInsert}></AddProductPanel>

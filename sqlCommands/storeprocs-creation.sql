@@ -11,8 +11,9 @@
      @userId AS NVARCHAR(450) )
  AS
  BEGIN
-     SELECT id,productId,unitPrice
-     FROM SellerProducts
+     SELECT sp.id,p.id AS productId,p.name,p.description,p.imageUrl,sp.unitPrice
+     FROM SellerProducts sp
+	 JOIN Products p ON sp.productId=p.id
      WHERE sellerId=@userId;
  END;
  GO
@@ -57,12 +58,14 @@ GO
 
 
 
- CREATE PROC usp_GetRetailerRequests( 
-     @userId AS NVARCHAR(450) )
+ ALTER PROC usp_GetRetailerRequests( 
+     @userId AS NVARCHAR(450)
+)
  AS
  BEGIN
-     SELECT id,productId,unitPrice
-     FROM RetailerRequests
+     SELECT rr.id,p.id AS productId,p.name,p.description,p.imageUrl,rr.unitPrice
+     FROM RetailerRequests rr
+	 JOIN Products p ON rr.productId=p.id
      WHERE retailerId=@userId;
  END;
  GO

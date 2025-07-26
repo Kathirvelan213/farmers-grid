@@ -4,26 +4,27 @@ import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 import { FaSave } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChangePriceAPI, RemoveProductsAPI } from '../../apiConsumer/requestProductsAPI';
 export function ItemRecord({item,setItems}){
     const sasToken=useSas();
     const [editState,setEditState]=useState(false);
-    const [price,setPrice]=useState(item.unitPrice);
+    const [price,setPrice]=useState(item.unitPrice)
     
     async function handleSave(){
         setEditState(false);
-        await ChangePriceAPI({id:item.rowId,unitPrice:price});
+        await ChangePriceAPI({id:item.id,unitPrice:price});
         item.unitPrice=price;
         setItems(prev=>({...prev,[item.id]:item}));
     }
-    async function handleDelete(){
-        await RemoveProductsAPI({id:item.rowId});
+    async function handleDelete(){    
+        await RemoveProductsAPI({id:item.id});
         setItems(prev=>{
             const {[item.id]:removed,...others}=prev;
             return others;
         });
     }
+
     return(
         <div className='itemRecord'>
             <img className='itemImageSmall' src={`${item.imageUrl}?${sasToken}`}/>
