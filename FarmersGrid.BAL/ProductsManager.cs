@@ -11,7 +11,7 @@ namespace FarmersGrid.BAL
         public ProductsManager(ProductsData productsData,ProductMatchData productMatchData)
         {
             _productsData=productsData;
-            _productMatchData = productMatchData;
+            _productMatchData = productMatchData;   
         }
         public async Task<IEnumerable<Product>> GetProductsData()
         {

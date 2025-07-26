@@ -4,6 +4,7 @@ using FarmersGrid.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FarmersGrid.API.Controllers
 {
@@ -21,10 +22,17 @@ namespace FarmersGrid.API.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("roles/{role}")]
-        public async Task<IEnumerable<AspNetUser>> GetUsers(string role)
+        [HttpGet("sellers")]
+        public async Task<IEnumerable<AspNetUser>> GetSellers()
         {
-            return await _AppUsersManager.GetUsers(role);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return await _AppUsersManager.GetSellers(userId);
+        }
+        [HttpGet("retailers")]
+        public async Task<IEnumerable<AspNetUser>> GetRetailers()
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return await _AppUsersManager.GetRetailers(userId);
         }
 
         [HttpGet("{UserName}")]

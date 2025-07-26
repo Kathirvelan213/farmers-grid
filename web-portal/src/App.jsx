@@ -32,17 +32,16 @@ function ProtectedRoute({children,allowedRoles}){
 function App() {
   useEffect(()=>{
     SignalrService.startConnection();
-    // User.getId();
   },[])
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<LoginPage/>}/>
-          <Route path='/dashboard' element={<DashBoardPage/>}/>
-          <Route path='/chat' element={<ChatPage/>}/>
-          <Route path='/users' element={<UsersPage/>}/>
-          <Route path='/user/:userName' element={<ProfilePage/>}/>
+          <Route path='/dashboard' element={<ProtectedRoute> <DashBoardPage/> </ProtectedRoute>}/>
+          <Route path='/chat' element={<ProtectedRoute> <ChatPage/> </ProtectedRoute>}/>
+          <Route path='/users' element={<ProtectedRoute> <UsersPage/> </ProtectedRoute>}/>
+          <Route path='/user/:userName' element={<ProtectedRoute> <ProfilePage/> </ProtectedRoute>}/>
           <Route path='requests' element={<ProtectedRoute allowedRoles={['Retailer']}><RequestProductsPage/> </ProtectedRoute>}/>
           <Route path='/unauthorized' element={<UnauthorizedPage/>}/>
         </Routes>

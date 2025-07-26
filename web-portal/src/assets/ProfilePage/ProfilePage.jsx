@@ -19,7 +19,6 @@ export function ProfilePage(){
         <div>
             <img className='profilePic' src='/BlankProfilePic.jpg'/>
             <div>
-                
                 <div>Id: {userData.id}</div>
                 <div>username: {userData.userName}</div>
                 <div>email: {userData.email}</div>

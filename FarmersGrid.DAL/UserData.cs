@@ -17,11 +17,17 @@ namespace FarmersGrid.DAL
             _dbService = dbService;
         }
 
-        public async Task<IEnumerable<AspNetUser>> GetUsers(string role)
+        public async Task<IEnumerable<AspNetUser>> GetSellers(string userId)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@role", role);
-            return await _dbService.QueryAsync<AspNetUser>("usp_GetUsers", parameters);
+            parameters.Add("@userId", userId);
+            return await _dbService.QueryAsync<AspNetUser>("usp_GetSellers", parameters);
+        }
+        public async Task<IEnumerable<AspNetUser>> GetRetailers(string userId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@userId", userId);
+            return await _dbService.QueryAsync<AspNetUser>("usp_GetRetailers", parameters);
         }
         public async Task<IEnumerable<AspNetUser>> GetUserData(string userId)
         {
@@ -44,7 +50,5 @@ namespace FarmersGrid.DAL
             parameters.Add("@userId", userId);
             return await _dbService.ExecuteAsync("usp_InsertBlankMatchRecords", parameters);
         }
-        
-
     }
 }

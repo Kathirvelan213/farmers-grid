@@ -11,7 +11,7 @@ class SignalrService{
         this.connection=new Signalr.HubConnectionBuilder()
         .withUrl(`${this.baseUrl}/chathub`)
         .withAutomaticReconnect()
-        .configureLogging(Signalr.LogLevel.Information)
+        .configureLogging(Signalr.LogLevel.Error)  // changed from information to error, change back if necessary
         .build();
 
         return this.connection.start();

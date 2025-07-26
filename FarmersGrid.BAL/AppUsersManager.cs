@@ -18,10 +18,13 @@ namespace FarmersGrid.BAL
             _userData=userData;
         }
 
-        public async Task<IEnumerable<AspNetUser>> GetUsers(string role)
+        public async Task<IEnumerable<AspNetUser>> GetSellers(string userId)
         {
-            var result= await _userData.GetUsers(role);
-            return result;
+            return await _userData.GetSellers(userId);
+        }
+        public async Task<IEnumerable<AspNetUser>> GetRetailers(string userId)
+        {
+            return await _userData.GetRetailers(userId);
         }
         public async Task<IEnumerable<AspNetUser>> GetUserData(string userId)
         {

@@ -13,10 +13,13 @@ namespace FarmersGrid.Models
         public string email { get; set; }
         public string phoneNumber { get; set; }
         public string roleId { get; set; }
+        public string role { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
     }
-    public class AspNetUserMatchObject
-    {
-        public AspNetUser aspNetUser { get; set; }
-        public float matchPercentage { get; set; }
-    }
+    //public class AspNetUserMatchObject
+    //{
+    //    public AspNetUser aspNetUser { get; set; }
+    //    public float matchPercentage { get; set; }
+    //}
 }

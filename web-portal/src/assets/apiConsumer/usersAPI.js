@@ -9,6 +9,12 @@ const axiosInstance=axios.create({
     withCredentials:true
 })
 
-export const getUsersAPI=()=>axiosInstance.get('/api/users/roles/seller');
+export const getSellersAPI=()=>axiosInstance.get('/api/users/sellers');
+
+export const getRetailersAPI=()=>axiosInstance.get('/api/users/retailers');
+
+export const getMatchScoresWithRetailersAPI=()=>axiosInstance.get('/api/productMatch/get-match-seller');
+
+export const getMatchScoresWithSellersAPI=()=>axiosInstance.get('/api/productMatch/get-match-retailer');
 
 export const getUserDataAPI=(userName)=>axiosInstance.get(`/api/users/${userName}`);

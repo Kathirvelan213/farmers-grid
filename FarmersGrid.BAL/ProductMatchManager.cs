@@ -20,5 +20,13 @@ namespace FarmersGrid.BAL
         {
             return await _productMatchData.RefreshMatchScores(userId);
         }
+        public async Task<IEnumerable<MatchScoreRecord>> GetMatchScoresForSellers(string userId)
+        {
+            return await _productMatchData.GetMatchScoresForSellers(userId);
+        }
+        public async Task<IEnumerable<MatchScoreRecord>> GetMatchScoresForRetailers(string userId)
+        {
+            return await _productMatchData.GetMatchScoresForRetailers(userId);
+        }
     }
 }
