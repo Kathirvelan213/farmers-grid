@@ -21,7 +21,7 @@ export function LoginBox(){
             password:password
         }).then(async ()=>{
             await getMyInfo();
-            navigate('/dashboard');
+            navigate('/');
         }).catch((error)=>console.error(error))
     }
     return (<>

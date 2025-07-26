@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import '../styles/UsersPage.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -33,16 +32,16 @@ function UserInfoRecord({retailer,matchScores}){
 
                 <div>
 
-                DISTANCE {matchScores.distance}
-                <br></br>
-                LATITUDE {retailer.latitude}
-                <br></br>
-                LONGITUDE {retailer.longitude}
-                <br></br>
-                MATCHED PRODUCTS {matchScores.matchedProductCount}
-                <br></br>
-                TOTAL PRODUCTS WANTED {matchScores.matchedProductCount/matchScores.productMatchScoreForRetailer}
-                
+                    DISTANCE {matchScores.distance}
+                    <br></br>
+                    LATITUDE {retailer.latitude}
+                    <br></br>
+                    LONGITUDE {retailer.longitude}
+                    <br></br>
+                    MATCHED PRODUCTS {matchScores.matchedProductCount}
+                    <br></br>
+                    TOTAL PRODUCTS WANTED {matchScores.matchedProductCount/matchScores.productMatchScoreForRetailer}
+                    
                 </div>
             </div>
             <div className='bottomBar'>

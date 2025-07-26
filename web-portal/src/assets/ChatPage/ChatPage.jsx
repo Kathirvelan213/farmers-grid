@@ -8,6 +8,7 @@ import ScrollToBottom,{useScrollToBottom} from "react-scroll-to-bottom"
 import { ChatMenu } from "./components/ChatMenu.jsx";
 import { CurrentChatNamePane } from "./components/CurrentChatNamePane.jsx";
 import { useAuth } from "../global/components/AuthProvider.jsx";
+import { TopBar } from "../Layout/TopBar.jsx";
 
 export function ChatPage(){
     const [sendMessage,setSendMessage]=useState('');

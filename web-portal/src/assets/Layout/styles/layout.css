@@ -1,0 +1,22 @@
+.topbar{
+    align-items: center;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    padding: 10px;
+}
+.appLogoForMenu{
+    height: 40px;
+    margin-right: 5px;
+}
+
+.layout{
+    display: grid;
+    grid-template-columns: auto 1fr ;
+    grid-template-rows: 70px 1fr;
+    height: 100vh;
+}
+
+.mainContent{
+    overflow-y: auto;
+}

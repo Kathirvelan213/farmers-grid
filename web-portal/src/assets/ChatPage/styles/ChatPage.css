@@ -33,7 +33,7 @@
 }
 
 .textbar{
-    width: stretch;
+    width: 100%;
     border-radius: 25px;
     padding: 5px 20px;
 }
@@ -52,7 +52,7 @@
 .chatArea{
     display: flex;
     flex-direction: column;
-    height:100vh;
+    height:100%;
     background-color: rgb(241, 241, 241);
     
 }
@@ -60,7 +60,12 @@
 .chatPage{
     display: grid;
     grid-template-columns: 25% 75%;
-    width: 100%;
+    height: 100%;
+}
+
+.chatPage > div {
+  min-width: 0;
+  overflow: auto;
 }
 
 .followButton{
@@ -75,7 +80,7 @@
 .chatUser{
     padding:10px;
     border-radius: 15px;
-    width: stretch;
+    width: 100%;
     height: 70px;
     display: flex;
     gap:15px;
@@ -121,7 +126,7 @@
 }
 
 .currentChatNamePane{
-    width: stretch;
+    width: 100%;
     height: 50px;
     padding:10px;
     background-color: white;
