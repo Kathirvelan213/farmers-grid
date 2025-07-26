@@ -1,6 +1,8 @@
-﻿using FarmersGrid.BAL;
+﻿using FarmersGrid.API.Data;
+using FarmersGrid.BAL;
 using FarmersGrid.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using System.Security.Claims;
@@ -13,15 +15,16 @@ namespace FarmersGrid.API.Controllers
     public class RequestProductsController : Controller
     {
         private RequestProductsManager _requestProductsManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public record AddRequProductDTO(int productId, float unitPrice);
         public record RemoveRequProductDTO(int id);
         public record ChangeRequPriceDTO(int id, float unitPrice);
-        public record RetailerDTO(string retailerId);
 
-        public RequestProductsController(RequestProductsManager requestProductsManager)
+        public RequestProductsController(RequestProductsManager requestProductsManager,UserManager<ApplicationUser> userManager)
         {
             _requestProductsManager = requestProductsManager;
+            _userManager = userManager;
         }
         [HttpGet("get-my-request-products")]
         public async Task<IEnumerable<MyProduct>> GetMyRequestProducts()
@@ -29,10 +32,11 @@ namespace FarmersGrid.API.Controllers
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return await _requestProductsManager.GetRetailerRequestProducts(userId);
         }
-        [HttpGet("get-retailer-request-products")]
-        public async Task<IEnumerable<MyProduct>> GetRetailerRequestProducts([FromBody] RetailerDTO retailerDTO)
+        [HttpGet("get-retailer-request-products/{UserName}")]
+        public async Task<IEnumerable<MyProduct>> GetRetailerRequestProducts(string UserName)
         {
-            return await _requestProductsManager.GetRetailerRequestProducts(retailerDTO.retailerId);
+            var user = await _userManager.FindByNameAsync(UserName);
+            return await _requestProductsManager.GetRetailerRequestProducts(user.Id);
         }
         [HttpPost("add-product")]
         public async Task<int> AddRetailerRequestProduct([FromBody] AddRequProductDTO addRequProductDTO)

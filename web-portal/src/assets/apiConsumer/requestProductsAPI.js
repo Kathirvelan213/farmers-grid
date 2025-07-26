@@ -12,7 +12,7 @@ const axiosInstance=axios.create({
 
 export const getMyRequestProductsAPI=()=>axiosInstance.get('/api/requestproducts/get-my-request-products')
 
-export const getRetailerRequestProductsAPI=()=>axiosInstance.get('/api/requestproducts/get-retailer-request-products')
+export const getRetailerRequestProductsAPI=(userName)=>axiosInstance.get(`/api/requestproducts/get-retailer-request-products/${userName}`)
 
 export const AddProductsAPI=(productDTO)=>axiosInstance.post('/api/requestproducts/add-product',productDTO)
 

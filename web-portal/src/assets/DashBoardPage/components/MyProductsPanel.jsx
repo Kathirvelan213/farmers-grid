@@ -35,9 +35,6 @@ export function MyProductsPanel({className}){
         const getMyProducts=async()=>{
             try{
                 const result=await getMyProductsAPI();
-                // console.log(1);
-                
-                // console.log(result.data);
                 setMyProducts(Object.fromEntries(result.data.map(product=>[product.id,product])));
             }
             catch(e){
@@ -62,8 +59,6 @@ export function MyProductsPanel({className}){
                 productId:parseInt(toInsert.id),
                 unitPrice:unitPrice
             }
-            console.log(insertObj);
-            
             const newRowId=await AddProductsAPI(insertObj);
             setMyProducts(prev=>({...prev,[insertObj.productId]:{...toInsert,["unitPrice"]:unitPrice,["id"]:newRowId.data}}));
         }

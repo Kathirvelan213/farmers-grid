@@ -13,6 +13,8 @@ export const getProductsAPI=()=>axiosInstance.get('/api/products');
 
 export const getMyProductsAPI=()=>axiosInstance.get('/api/products/get-my-products')
 
+export const getSellersProductsAPI=(userName)=>axiosInstance.get(`/api/products/get-seller-products/${userName}`)
+
 export const AddProductsAPI=(productDTO)=>axiosInstance.post('/api/products/add-product',productDTO)
 
 export const RemoveProductsAPI=(idDTO)=>axiosInstance.delete('/api/products/remove-product',{data:idDTO})

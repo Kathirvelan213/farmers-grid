@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FarmersGrid.API.Data;
 using FarmersGrid.BAL;
-using Microsoft.AspNetCore.Authorization;
 using FarmersGrid.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace FarmersGrid.API.Controllers
@@ -12,15 +14,16 @@ namespace FarmersGrid.API.Controllers
     public class ProductsController : ControllerBase
     {
         private ProductsManager _productsManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public record AddProductDTO ( int productId, float unitPrice);
         public record RemoveProductDTO ( int id);
         public record ChangePriceDTO( int id,float unitPrice);
-        public record SellerDTO(string sellerId);
 
-        public ProductsController(ProductsManager productsManager)
+        public ProductsController(ProductsManager productsManager,UserManager<ApplicationUser> userManager)
         {
             _productsManager = productsManager;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -34,10 +37,11 @@ namespace FarmersGrid.API.Controllers
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return await _productsManager.GetSellerProducts(userId);
         }
-        [HttpGet("get-seller-products")]
-        public async Task<IEnumerable<MyProduct>> GetSellerProducts([FromBody] SellerDTO sellerDTO)
+        [HttpGet("get-seller-products/{UserName}")]
+        public async Task<IEnumerable<MyProduct>> GetSellerProducts(string UserName)
         {
-            return await _productsManager.GetSellerProducts(sellerDTO.sellerId);
+            var user = await _userManager.FindByNameAsync(UserName);
+            return await _productsManager.GetSellerProducts(user.Id);
         }
         [HttpPost("add-product")]
         public async Task<int> AddProduct([FromBody] AddProductDTO addProductDTO)
