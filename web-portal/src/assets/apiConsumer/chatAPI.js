@@ -14,3 +14,5 @@ export const getChatsAPI=()=>axiosInstance.get('/api/chat');
 export const getMessagesAPI=(chatId)=>axiosInstance.get(`/api/chat/${chatId}/messages`);   
 
 export const getUnreadMessageCountAPI=()=>axiosInstance.get('/api/chat/unreadCount');   
+
+export const createNewChatAPI=(newChatDTO)=>axiosInstance.post('/api/chat/createChat',newChatDTO);

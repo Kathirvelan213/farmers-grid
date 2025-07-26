@@ -9,10 +9,10 @@ export function DashBoardPage(){
         <div className='dashBoardPage'>
             <ProfilePanel></ProfilePanel>
             <div className='temp col-span-2'></div>
-            <Sidebar className='row-span-2'></Sidebar>
+            <div className='row-span-2'></div>
             <div className='temp'></div>
             <div className='temp'></div>
-        <MyProductsPanel className="col-span-2"></MyProductsPanel>
+            <MyProductsPanel className="col-span-2"></MyProductsPanel>
         </div>
     )
 }
