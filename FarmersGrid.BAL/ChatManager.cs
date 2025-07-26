@@ -49,5 +49,9 @@ namespace FarmersGrid.BAL
             };
             return message;
         }
+        public async Task<int> CreateNewChat(string user1Id, string user2Id)
+        {
+            return await _chatData.CreateNewChat(user1Id,user2Id);
+        }
     }
 }

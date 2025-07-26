@@ -52,5 +52,12 @@ namespace FarmersGrid.DAL
             return (int)(decimal)await _dbService.ExecuteScalarAsync("usp_InsertMessage", parameters);
 
         }
+        public async Task<int> CreateNewChat(string user1Id, string user2Id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@user1Id", user1Id);
+            parameters.Add("@user2Id", user2Id);
+            return await _dbService.ExecuteAsync("usp_CreateNewChat", parameters);
+        }
     }
 }

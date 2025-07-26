@@ -7,6 +7,7 @@ using System.Security.Claims;
 
 namespace FarmersGrid.API.Controllers
 {
+    public record NewChatDTO(string otherUserId);
     [Authorize(AuthenticationSchemes = "CookieAuth")]
     [ApiController]
     [Route("api/[controller]")]
@@ -36,7 +37,15 @@ namespace FarmersGrid.API.Controllers
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return await _chatManager.GetUnreadMessageCount(userId);
         }
+        [HttpPost("createChat")]
+        public async Task<int> CreateNewChat([FromBody] NewChatDTO newChatDTO)
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return await _chatManager.CreateNewChat(userId,newChatDTO.otherUserId);
+        }
+
+
     }
 
-        
+
 }

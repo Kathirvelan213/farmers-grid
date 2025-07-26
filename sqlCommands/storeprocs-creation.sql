@@ -125,6 +125,16 @@ BEGIN
 END;
 GO
 
+CREATE PROC usp_CreateNewChat(
+	@user1Id AS NVARCHAR(450),
+	@user2Id AS NVARCHAR(450)
+)
+AS
+BEGIN
+	INSERT INTO Conversations(user1,user2)
+	VALUES(@user1Id,@user2Id);
+END
+GO
 ALTER PROC usp_GetMessages(
 	@chatId AS INT
 )
@@ -165,31 +175,41 @@ BEGIN
 END;
 GO
 
-ALTER PROC usp_GetUsers(
-	@userId AS NVARCHAR(450),
-	@role AS NVARCHAR(256)
+CREATE PROC usp_GetSellers(
+	@userId AS NVARCHAR(450)
 )
 AS
 BEGIN
-	IF 
-	SELECT u.id,u.userName,u.email,u.phoneNumber,ur.roleId
+	SELECT u.id,u.userName,u.email,u.phoneNumber,ms.sellerId
 	FROM AspNetUsers u
-	JOIN AspNetUserRoles ur
-	ON u.id=ur.UserId AND ur.RoleId=(SELECT Id FROM AspNetRoles WHERE NormalizedName=UPPER(@role))
-	JOIN MatchScores ms ON u.
+	JOIN MatchScores ms ON ms.sellerId=u.Id
+	WHERE ms.retailerId=@userId;
+END;
+GO
+ALTER PROC usp_GetRetailers(
+	@userId AS NVARCHAR(450)
+)
+AS
+BEGIN
+	SELECT u.id,u.userName,u.email,u.phoneNumber,ms.retailerId,ud.latitude,ud.longitude
+	FROM AspNetUsers u
+	JOIN MatchScores ms ON ms.retailerId=u.Id
+	JOIN UserDetails ud ON u.id=ud.id
+	WHERE ms.sellerId=@userId;
 END;
 GO
 
 --to be changed to get more details
-CREATE PROC usp_GetUserDetails(
+ALTER PROC usp_GetUserDetails(
 @userId AS NVARCHAR(450)
 )
 AS 
 BEGIN
-	SELECT u.id,u.userName,u.email,u.phoneNumber,r.roleId
+	SELECT u.id,u.userName,u.email,u.phoneNumber,ur.roleId,r.NormalizedName,ud.latitude,ud.longitude
 	FROM AspNetUsers u
-	JOIN AspNetUserRoles r
-	ON u.id=r.UserId
+	JOIN AspNetUserRoles ur ON u.id=ur.UserId
+	JOIN AspNetRoles r ON ur.RoleId=r.Id
+	JOIN UserDetails ud ON u.id=ud.id
 	WHERE u.id=@userId;
 END;
 GO
