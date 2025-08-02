@@ -208,7 +208,7 @@ ALTER PROC usp_GetUserDetails(
 )
 AS 
 BEGIN
-	SELECT u.id,u.userName,u.email,u.phoneNumber,ur.roleId,r.NormalizedName,ud.latitude,ud.longitude
+	SELECT u.id,u.userName,u.email,u.phoneNumber,ur.roleId,r.Name AS role,ud.latitude,ud.longitude
 	FROM AspNetUsers u
 	JOIN AspNetUserRoles ur ON u.id=ur.UserId
 	JOIN AspNetRoles r ON ur.RoleId=r.Id
@@ -216,6 +216,8 @@ BEGIN
 	WHERE u.id=@userId;
 END;
 GO
+
+EXEC usp_GetUserDetails @userId='9fe0c1aa-6789-4e13-a881-780c841ab5c1';
 
 CREATE PROC usp_InsertInitialUserDetails(
 	@userId AS NVARCHAR(450),

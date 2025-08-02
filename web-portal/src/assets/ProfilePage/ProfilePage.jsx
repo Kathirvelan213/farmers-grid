@@ -8,6 +8,7 @@ import { getMyRequestProductsAPI, getRetailerRequestProductsAPI } from '../apiCo
 import { MyProductsPanel } from '../DashBoardPage/components/MyProductsPanel';
 import { ItemsList } from '../DashBoardPage/components/ItemsList';
 import { SearchPanel } from '../global/components/SearchPanel';
+import { ComparisonList } from './components/ComparisonList';
 
 export function ProfilePage(){
     const {userName}=useParams();
@@ -15,6 +16,8 @@ export function ProfilePage(){
     const [myProducts,setMyProducts]=useState({});
     const [othersProducts,setOthersProducts]=useState({});
     const {user}=useAuth();
+    const [productComparison,setProductComparison]=useState({});
+
 
     useEffect(()=>{
         const fetchUserData=async()=>{
@@ -25,6 +28,9 @@ export function ProfilePage(){
     },[userName])
 
     useEffect(()=>{
+        if(Object.keys(userData).length===0){
+            return;
+        }
         const fetchProductsData=async ()=>{
             var myProductsResult={}
             var othersProductsResult={}
@@ -33,7 +39,6 @@ export function ProfilePage(){
             }
             else if(user.role=='Retailer'){
                 myProductsResult=await getMyRequestProductsAPI();
-                
             }
             setMyProducts(Object.fromEntries(myProductsResult.data.map(product=>[product.id,product])));
 
@@ -47,6 +52,28 @@ export function ProfilePage(){
         }
         fetchProductsData();
     },[userData])
+    useEffect(()=>{
+        if(Object.keys(othersProducts).length===0){
+            return;
+        }
+        var combined={}
+        for (const rowId in myProducts){
+            const productId=myProducts[rowId]["productId"];
+            const {unitPrice,...rest}=myProducts[rowId];
+            combined[productId]={...rest,"myPrice":unitPrice,"othersPrice":null}
+        }
+        for (const rowId in othersProducts){
+            const productId=othersProducts[rowId]["productId"]
+            const {unitPrice,...rest}=othersProducts[rowId];
+            if(productId in combined){
+                combined[productId]["othersPrice"]=unitPrice;
+            }
+            else{
+                combined[productId]={...rest,othersPrice:unitPrice,myPrice:null}
+            }
+        }
+        setProductComparison(combined);
+    },[othersProducts])
 
     return(
         <div>
@@ -59,9 +86,9 @@ export function ProfilePage(){
                 <div>role id: {userData.roleId}</div>
             </div>
             <div>
-                <SearchPanel items={Object.values(myProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"id",setItems:setMyProducts}}></SearchPanel>
-                <SearchPanel items={Object.values(othersProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"id",setItems:setOthersProducts}}></SearchPanel>
-            </div>
+                <SearchPanel items={Object.values(productComparison)} filterKey={"name"} DisplayComponent={ComparisonList} displayComponentProps={{keyField:"id",setItems:setMyProducts}}></SearchPanel>
+{/*                <SearchPanel items={Object.values(othersProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"id",setItems:setOthersProducts}}></SearchPanel>
+*/}            </div>
         </div>
     )
 }
