@@ -3,8 +3,6 @@ import { useSas } from '../../global/components/SasProvider'
 import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 import { FaSave } from 'react-icons/fa';
-import { FaTimes } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
 import { ChangePriceAPI, RemoveProductsAPI } from '../../apiConsumer/requestProductsAPI';
 export function ItemRecord({item,setItems}){
     const sasToken=useSas();

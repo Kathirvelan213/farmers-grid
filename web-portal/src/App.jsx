@@ -45,7 +45,8 @@ function App() {
             <Route path='/chat' element={<ProtectedRoute> <ChatPage/> </ProtectedRoute>}/>
             <Route path='/users' element={<ProtectedRoute> <UsersPage/> </ProtectedRoute>}/>
             <Route path='/user/:userName' element={<ProtectedRoute> <ProfilePage/> </ProtectedRoute>}/>
-            <Route path='requests' element={<ProtectedRoute allowedRoles={['Retailer']}><RequestProductsPage/> </ProtectedRoute>}/>
+            <Route path='/myProductRequests' element={<ProtectedRoute allowedRoles={['Retailer']}><RequestProductsPage/> </ProtectedRoute>}/>
+            <Route path='/dealRequests' element={<ProtectedRoute><div/> </ProtectedRoute>}/>
             <Route path='/unauthorized' element={<UnauthorizedPage/>}/>
           </Route>
         </Routes>

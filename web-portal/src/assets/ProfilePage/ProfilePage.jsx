@@ -5,10 +5,8 @@ import { useParams } from 'react-router-dom'
 import { useAuth } from '../global/components/AuthProvider';
 import { getMyProductsAPI, getSellersProductsAPI } from '../apiConsumer/productsAPI';
 import { getMyRequestProductsAPI, getRetailerRequestProductsAPI } from '../apiConsumer/requestProductsAPI';
-import { MyProductsPanel } from '../DashBoardPage/components/MyProductsPanel';
-import { ItemsList } from '../DashBoardPage/components/ItemsList';
 import { SearchPanel } from '../global/components/SearchPanel';
-import { ComparisonList } from './components/ComparisonList';
+import { ComparisonList, NegotiationList } from './components/ComparisonList';
 
 export function ProfilePage(){
     const {userName}=useParams();
@@ -87,8 +85,9 @@ export function ProfilePage(){
             </div>
             <div>
                 <SearchPanel items={Object.values(productComparison)} filterKey={"name"} DisplayComponent={ComparisonList} displayComponentProps={{keyField:"id",setItems:setMyProducts}}></SearchPanel>
-{/*                <SearchPanel items={Object.values(othersProducts)} filterKey={"name"} DisplayComponent={ItemsList} displayComponentProps={{keyField:"id",setItems:setOthersProducts}}></SearchPanel>
-*/}            </div>
+                <SearchPanel items={Object.values(productComparison)} filterKey={"name"} DisplayComponent={NegotiationList} displayComponentProps={{keyField:"id"}}></SearchPanel>
+            </div>
+            <button onClick={()=>setRequestMode(true)}>request</button>
         </div>
     )
 }

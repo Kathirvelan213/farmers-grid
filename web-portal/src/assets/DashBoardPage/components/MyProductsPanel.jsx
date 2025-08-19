@@ -5,9 +5,7 @@ import { getMyProductsAPI } from '../../apiConsumer/productsAPI';
 import {AddProductsAPI} from '../../apiConsumer/productsAPI';
 import { MoreProductsPanel } from './MoreProductsPanel';
 import { SearchPanel } from '../../global/components/SearchPanel.jsx';
-import { Gallery } from './Gallery';
 import {ItemsList} from './ItemsList.jsx'
-import { ItemRecord } from './Itemrecord.jsx';
 import { AddProductPanel } from './AddProductPanel.jsx';
 
 export function MyProductsPanel({className}){

@@ -3,9 +3,7 @@ import { useState,useEffect } from 'react';
 import { getProductsAPI } from '../../apiConsumer/productsAPI';
 import { MoreProductsPanel } from './MoreProductsPanel';
 import { SearchPanel } from '../../global/components/SearchPanel.jsx';
-import { Gallery } from './Gallery';
 import {ItemsList} from './ItemsList.jsx'
-import { ItemRecord } from './Itemrecord.jsx';
 import { AddProductPanel } from './AddProductPanel.jsx';
 import { AddProductsAPI, getMyRequestProductsAPI } from '../../apiConsumer/requestProductsAPI.js';
 

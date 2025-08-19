@@ -1,5 +1,4 @@
 import "../styles/LoginPage.css"
-import { useState } from "react"
 
 export function InputField({placeholder,Icon,value,setValue,isPassword}){
     return(

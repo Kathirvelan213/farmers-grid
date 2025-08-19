@@ -6,7 +6,6 @@ import { loginAPI } from "../../apiConsumer/identityAPI"
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../global/components/AuthProvider";
-// import User from "../../global/UserDetails";
 
 export function LoginBox(){
     const [email, setEmail]=useState();
