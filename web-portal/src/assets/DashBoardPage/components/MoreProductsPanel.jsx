@@ -1,5 +1,5 @@
-import { Gallery } from "./Gallery"
-import { SearchPanel } from "../../global/components/SearchPanel"
+import { Gallery } from "./Gallery.jsx"
+import { SearchPanel } from "../../global/components/SearchPanel.jsx"
 
 export function MoreProductsPanel({items,setToInsert}){
     return (

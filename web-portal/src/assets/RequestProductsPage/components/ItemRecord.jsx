@@ -1,9 +1,9 @@
 import '../styles/DashBoardPage.css'
-import { useSas } from '../../global/components/SasProvider'
+import { useSas } from '../../global/components/SasProvider.jsx'
 import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 import { FaSave } from 'react-icons/fa';
-import { ChangePriceAPI, RemoveProductsAPI } from '../../apiConsumer/requestProductsAPI';
+import { ChangePriceAPI, RemoveProductsAPI } from '../../apiConsumer/requestProductsAPI.js';
 export function ItemRecord({item,setItems}){
     const sasToken=useSas();
     const [editState,setEditState]=useState(false);

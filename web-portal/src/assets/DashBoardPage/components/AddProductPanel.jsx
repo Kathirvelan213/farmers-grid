@@ -1,5 +1,5 @@
 import '../styles/DashBoardPage.css'
-import { useSas } from '../../global/components/SasProvider';
+import { useSas } from '../../global/components/SasProvider.jsx';
 
 export function AddProductPanel({item}){
     const sasToken=useSas();

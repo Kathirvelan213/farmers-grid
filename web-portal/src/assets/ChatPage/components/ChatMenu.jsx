@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react'
 import '../styles/ChatPage.css'
-import { getChatsAPI } from '../../apiConsumer/chatAPI';
-import { SearchPanel } from '../../global/components/SearchPanel';
+import { getChatsAPI } from '../../apiConsumer/chatAPI.js';
+import { SearchPanel } from '../../global/components/SearchPanel.jsx';
 
 
 export function ChatMenu({setCurrentChat}){

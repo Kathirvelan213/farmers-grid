@@ -1,6 +1,6 @@
 import { createContext,useContext,useEffect, useState } from "react";
-import '../../apiConsumer/storageAPI';
-import { getSasAPI } from "../../apiConsumer/storageAPI";
+import '../../apiConsumer/storageAPI.js';
+import { getSasAPI } from "../../apiConsumer/storageAPI.js";
 
 const SasContext=createContext(null);
 

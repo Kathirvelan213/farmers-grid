@@ -1,7 +1,7 @@
 import '../styles/LoginPage.css';
-import { InputMap } from './InputMap';
-import { LoginBox } from "./LoginForm"
-import { RegisterForm } from './RegisterForm';
+import { InputMap } from './InputMap.jsx';
+import { LoginBox } from "./LoginForm.jsx"
+import { RegisterForm } from './RegisterForm.jsx';
 
 
 export function LeftRegisterPanel({isRegisterMode,formData,setFormData}){

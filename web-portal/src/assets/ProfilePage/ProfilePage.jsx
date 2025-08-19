@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { getUserDataAPI } from '../apiConsumer/usersAPI';
+import { getUserDataAPI } from '../apiConsumer/usersAPI.js';
 import './styles/ProfilePage.css'
 import { useParams } from 'react-router-dom'
-import { useAuth } from '../global/components/AuthProvider';
-import { getMyProductsAPI, getSellersProductsAPI } from '../apiConsumer/productsAPI';
-import { getMyRequestProductsAPI, getRetailerRequestProductsAPI } from '../apiConsumer/requestProductsAPI';
-import { SearchPanel } from '../global/components/SearchPanel';
-import { ComparisonList, NegotiationList } from './components/ComparisonList';
+import { useAuth } from '../global/components/AuthProvider.jsx';
+import { getMyProductsAPI, getSellersProductsAPI } from '../apiConsumer/productsAPI.js';
+import { getMyRequestProductsAPI, getRetailerRequestProductsAPI } from '../apiConsumer/requestProductsAPI.js';
+import { SearchPanel } from '../global/components/SearchPanel.jsx';
+import { ComparisonList, NegotiationList } from './components/ComparisonList.jsx';
 
 export function ProfilePage(){
     const {userName}=useParams();

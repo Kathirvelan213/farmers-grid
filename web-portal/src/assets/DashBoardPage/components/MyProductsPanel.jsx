@@ -1,9 +1,9 @@
 import '../styles/DashBoardPage.css';
 import { useState,useEffect } from 'react';
-import { getProductsAPI } from '../../apiConsumer/productsAPI';
-import { getMyProductsAPI } from '../../apiConsumer/productsAPI';
-import {AddProductsAPI} from '../../apiConsumer/productsAPI';
-import { MoreProductsPanel } from './MoreProductsPanel';
+import { getProductsAPI } from '../../apiConsumer/productsAPI.js';
+import { getMyProductsAPI } from '../../apiConsumer/productsAPI.js';
+import {AddProductsAPI} from '../../apiConsumer/productsAPI.js';
+import { MoreProductsPanel } from './MoreProductsPanel.jsx';
 import { SearchPanel } from '../../global/components/SearchPanel.jsx';
 import {ItemsList} from './ItemsList.jsx'
 import { AddProductPanel } from './AddProductPanel.jsx';

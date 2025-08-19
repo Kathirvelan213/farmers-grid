@@ -1,5 +1,5 @@
 import '../styles/DashBoardPage.css';
-import { ItemRecord } from './Itemrecord';
+import { ItemRecord } from './Itemrecord.jsx';
 
 export function ItemsList({items,keyField,setItems}){    
     return(

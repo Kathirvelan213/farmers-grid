@@ -1,5 +1,5 @@
 import { createContext,useContext,useEffect,useState } from "react";
-import { getMyInfoAPI } from "../../apiConsumer/identityAPI";
+import { getMyInfoAPI } from "../../apiConsumer/identityAPI.js";
 
 const AuthContext=createContext();
 

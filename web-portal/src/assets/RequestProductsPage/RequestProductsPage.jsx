@@ -1,7 +1,6 @@
 import './styles/DashBoardPage.css';
-import { MyProductsPanel } from './components/MyProductsPanel';
-import { ProfilePanel } from './components/ProfilePanel';
-import { Sidebar } from '../Layout/Sidebar';
+import { MyProductsPanel } from './components/MyProductsPanel.jsx';
+
 
 
 export function RequestProductsPage(){

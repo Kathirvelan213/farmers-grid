@@ -1,4 +1,4 @@
-import { useSas } from '../../global/components/SasProvider'
+import { useSas } from '../../global/components/SasProvider.jsx'
 import '../styles/DashBoardPage.css'
 
 export function ItemTile({item,onClick}){

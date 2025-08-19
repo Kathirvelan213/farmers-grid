@@ -1,5 +1,5 @@
 import '../styles/DashBoardPage.css';
-import { ItemTile } from './ItemTile';
+import { ItemTile } from './ItemTile.jsx';
 
 export function Gallery({items,onClick,keyField}){
     return(

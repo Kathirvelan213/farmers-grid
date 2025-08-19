@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import './styles/UsersPage.css'
 import { getMatchScoresWithRetailersAPI, getMatchScoresWithSellersAPI, getRetailersAPI, getSellersAPI } from '../apiConsumer/usersAPI';
-import { useAuth } from '../global/components/AuthProvider';
-import { UsersPageForSellers } from './components/UsersPageForSellers';
-import { UsersPageForRetailers } from './components/UsersPageForRetailers';
-import { createNewChatAPI, getChatsAPI } from '../apiConsumer/chatAPI';
+import { useAuth } from '../global/components/AuthProvider.jsx';
+import { UsersPageForSellers } from './components/UsersPageForSellers.jsx';
+import { UsersPageForRetailers } from './components/UsersPageForRetailers.jsx';
+import { createNewChatAPI, getChatsAPI } from '../apiConsumer/chatAPI.js';
 import { useNavigate } from 'react-router-dom';
 
 export function UsersPage(){

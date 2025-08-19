@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../styles/ProfilePage.css';
-import { ComparisonRecord, NegotiationRecord } from './ComparisonRecord';
+import { ComparisonRecord, NegotiationRecord } from './ComparisonRecord.jsx';
 
 export function ComparisonList({items,keyField,setItems}){    
     return(

@@ -1,5 +1,5 @@
 import '../styles/ProfilePage.css'
-import { useSas } from '../../global/components/SasProvider'
+import { useSas } from '../../global/components/SasProvider.jsx'
 
 
 export function ComparisonRecord({item,setItems}){

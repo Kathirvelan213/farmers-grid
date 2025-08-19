@@ -1,8 +1,7 @@
 import { useState } from "react"
-import {motion, AnimatePresence} from 'framer-motion'
-import {LeftRegisterPanel,CenterPanel,RightRegisterPanel} from './components/RegisterPanels'
-import { loginAPI, registerAPI } from "../apiConsumer/identityAPI";
-import { useAuth } from "../global/components/AuthProvider";
+import {LeftRegisterPanel,CenterPanel,RightRegisterPanel} from './components/RegisterPanels.jsx'
+import { loginAPI, registerAPI } from "../apiConsumer/identityAPI.js";
+import { useAuth } from "../global/components/AuthProvider.jsx";
 import { useNavigate } from "react-router-dom";
 export function LoginPage(){
     const [registerMode,setRegisterMode]=useState(false);

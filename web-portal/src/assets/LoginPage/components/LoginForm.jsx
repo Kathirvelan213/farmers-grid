@@ -2,10 +2,10 @@ import "../styles/LoginPage.css"
 import { InputField } from "./InputField"
 import {FaUser} from 'react-icons/fa'
 import {FaLock} from 'react-icons/fa'
-import { loginAPI } from "../../apiConsumer/identityAPI"
+import { loginAPI } from "../../apiConsumer/identityAPI.js"
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from "../../global/components/AuthProvider";
+import { useAuth } from "../../global/components/AuthProvider.jsx";
 
 export function LoginBox(){
     const [email, setEmail]=useState();
