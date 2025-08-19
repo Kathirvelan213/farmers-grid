@@ -1,4 +1,4 @@
-import '../styles/chatPage.css';
+import '../styles/ChatPage.css';
 
 export function CurrentChatNamePane({chat}){
     return(
