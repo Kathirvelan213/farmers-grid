@@ -4,6 +4,7 @@ import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 import { FaSave } from 'react-icons/fa';
 import { ChangePriceAPI, RemoveProductsAPI } from '../../apiConsumer/requestProductsAPI.js';
+import { useState } from 'react';
 export function ItemRecord({item,setItems}){
     const sasToken=useSas();
     const [editState,setEditState]=useState(false);

@@ -74,20 +74,28 @@ export function ProfilePage(){
     },[othersProducts])
 
     return(
-        <div>
-            <img className='profilePic' src='/BlankProfilePic.jpg'/>
-            <div>
-                <div>Id: {userData.id}</div>
-                <div>username: {userData.userName}</div>
-                <div>email: {userData.email}</div>
-                <div>phone number: {userData.phoneNumber}</div>
-                <div>role id: {userData.roleId}</div>
+        <div className='profileContainer'>
+            <div className='profileHeader'>
+                <img className='profileAvatar' src='/BlankProfilePic.jpg' alt='Profile'/>
+                <div className='profileInfo'>
+                    <div className='infoRow'><span className='infoLabel'>Username:</span> <span className='infoValue'>{userData.userName}</span></div>
+                    <div className='infoRow'><span className='infoLabel'>Email:</span> <span className='infoValue'>{userData.email}</span></div>
+                    <div className='infoRow'><span className='infoLabel'>Phone:</span> <span className='infoValue'>{userData.phoneNumber}</span></div>
+                    <div className='infoRow'><span className='infoLabel'>Role:</span> <span className='infoValue'>{userData.role ?? '—'}</span></div>
+                    <div className='infoRow'><span className='infoLabel'>Location:</span> <span className='infoValue'>{userData.location ?? '—'}</span></div>
+                </div>
+                
             </div>
-            <div>
-                <SearchPanel items={Object.values(productComparison)} filterKey={"name"} DisplayComponent={ComparisonList} displayComponentProps={{keyField:"id",setItems:setMyProducts}}></SearchPanel>
-                <SearchPanel items={Object.values(productComparison)} filterKey={"name"} DisplayComponent={NegotiationList} displayComponentProps={{keyField:"id"}}></SearchPanel>
+            <div className='panelsRow'>
+                <div className='panel'>
+                    <div className='panelTitle'>Product Comparison</div>
+                    <SearchPanel items={Object.values(productComparison)} filterKey={"name"} DisplayComponent={ComparisonList} displayComponentProps={{keyField:"id",setItems:setMyProducts}}></SearchPanel>
+                </div>
+                <div className='panel'>
+                    <div className='panelTitle'>Negotiations</div>
+                    <SearchPanel items={Object.values(productComparison)} filterKey={"name"} DisplayComponent={NegotiationList} displayComponentProps={{keyField:"id"}}></SearchPanel>
+                </div>
             </div>
-            <button onClick={()=>setRequestMode(true)}>request</button>
         </div>
     )
 }

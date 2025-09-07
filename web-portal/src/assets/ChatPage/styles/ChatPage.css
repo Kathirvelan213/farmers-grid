@@ -102,7 +102,7 @@
     height: 100%;  
 }
 
-.searchBar{
+/* .searchBar{
     height:35px;
     border-radius: 10px;
     border-color:green;
@@ -110,7 +110,7 @@
     border-top: solid 1px rgb(120, 143, 235);
     border-left: solid 1px rgb(84, 128, 205);
     border-right: solid 2px rgb(57, 201, 179);
-}
+} */
 
 .searchPanel{
     background-color: transparent;

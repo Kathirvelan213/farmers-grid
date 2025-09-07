@@ -45,7 +45,6 @@ export function UsersPage(){
 
     const handleMessageClick=async (userIdToAddToChat)=>{
         if(!(userIdToAddToChat in chats)){
-            console.log(1)
             await createNewChatAPI({otherUserId:userIdToAddToChat});
         }
         navigate('/chat');

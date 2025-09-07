@@ -128,7 +128,7 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 
-app.UseRouting();
+app.UseRouting();    //apparently not needed anymore.. just map controllers and map hub is enough
 app.UseAuthentication();
 app.UseAuthorization();
 

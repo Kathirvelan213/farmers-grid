@@ -35,7 +35,5 @@ namespace FarmersGrid.API.Hubs
             await Clients.Group(chatId.ToString()).SendAsync("receiveMessage",message);
             return message;
         }
-        
-
     }
 }

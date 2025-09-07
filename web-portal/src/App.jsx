@@ -13,6 +13,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from './assets/global/components/AuthProvider';
 import { UnauthorizedPage } from './assets/UnauthorizedPage/UnauthorizedPage';
 import { Layout } from './assets/Layout/Layout';
+import { MyProductsPage } from './assets/MyProducts/MyProductsPage';
 
 
 function ProtectedRoute({children,allowedRoles}){
@@ -45,7 +46,8 @@ function App() {
             <Route path='/chat' element={<ProtectedRoute> <ChatPage/> </ProtectedRoute>}/>
             <Route path='/users' element={<ProtectedRoute> <UsersPage/> </ProtectedRoute>}/>
             <Route path='/user/:userName' element={<ProtectedRoute> <ProfilePage/> </ProtectedRoute>}/>
-            <Route path='/myProductRequests' element={<ProtectedRoute allowedRoles={['Retailer']}><RequestProductsPage/> </ProtectedRoute>}/>
+            <Route path='/myRequests' element={<ProtectedRoute allowedRoles={['Retailer']}><RequestProductsPage/> </ProtectedRoute>}/>
+            <Route path='/myProducts' element={<ProtectedRoute allowedRoles={['Seller']}><MyProductsPage/> </ProtectedRoute>}/>
             <Route path='/dealRequests' element={<ProtectedRoute><div/> </ProtectedRoute>}/>
             <Route path='/unauthorized' element={<UnauthorizedPage/>}/>
           </Route>

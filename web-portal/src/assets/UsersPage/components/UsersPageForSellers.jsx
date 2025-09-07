@@ -40,7 +40,9 @@ function UserInfoRecord({retailer,matchScores,handleMessageClick}){
                     <br></br>
                     MATCHED PRODUCTS {matchScores.matchedProductCount}
                     <br></br>
-                    TOTAL PRODUCTS WANTED {matchScores.matchedProductCount/matchScores.productMatchScoreForRetailer}
+                    TOTAL PRODUCTS WANTED {matchScores.productMatchScoreForRetailer==0?0:matchScores.matchedProductCount/matchScores.productMatchScoreForRetailer}
+                    <br></br>
+                    MATCH SCORES {matchScores.totalMatchScoreForSeller}
                     
                 </div>
             </div>

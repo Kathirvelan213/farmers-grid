@@ -3,10 +3,15 @@ import './styles/layout.css'
 import { Sidebar as ProSideBar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { FaHome,FaApple,FaUser, FaMoneyBill, FaComment } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../global/components/AuthProvider';
 
 export function Sidebar({className}){
     const location=useLocation();
     const [collapsed,setCollapsed]=useState(false);
+    const {user,loading}=useAuth();
+    if(loading){
+      return <div>loading</div>
+    }
     return (
         <div>
             <ProSideBar collapsed={collapsed}>
@@ -17,9 +22,12 @@ export function Sidebar({className}){
                     icon={<FaHome/>} 
                     active={location.pathname==='/'}
                     component={<Link to='/'/>}> Home </MenuItem>
-                <MenuItem icon={<FaApple/>}
+                {user.role=='Seller'&&<MenuItem icon={<FaApple/>}
                     active={location.pathname==='/'}
-                    component={<Link to='/'/>}> MyProducts </MenuItem>
+                    component={<Link to='/myProducts'/>}> MyProducts </MenuItem>}
+                {user.role=='Retailer'&&<MenuItem icon={<FaApple/>}
+                    active={location.pathname==='/'}
+                    component={<Link to='/myRequests'/>}> MyRequests </MenuItem>}
                 <MenuItem icon={<FaComment/>}
                     active={location.pathname==='/chat'}
                     component={<Link to='/chat'/>}>Chat </MenuItem>

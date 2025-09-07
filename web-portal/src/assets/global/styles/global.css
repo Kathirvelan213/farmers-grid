@@ -12,10 +12,33 @@
 }
 
 .searchBar {
-    width: stretch;
-    max-width: 400px;
-    margin: 15px;
-    height: 40px;
-    padding: 10px;
-    border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px ;
+  margin-left: 20px;
+  height: 42px;
+  padding: 14px;
+
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fafafa;
+
+  font-size: 1rem;
+  color: #333;
+
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  box-shadow:  1px 3px rgba(0,0,0,0.05);
 }
+
+.searchBar::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.searchBar:focus {
+  border-color: #77fa7b;          /* subtle green accent */
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.25);
+}
+

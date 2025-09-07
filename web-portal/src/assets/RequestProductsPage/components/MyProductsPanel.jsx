@@ -32,9 +32,7 @@ export function MyProductsPanel({className}){
         const getMyProducts=async()=>{
             try{
                 const result=await getMyRequestProductsAPI();
-                // console.log(1);
-                
-                // console.log(result.data);
+
                 setMyProducts(Object.fromEntries(result.data.map(product=>[product.id,product])));
             }
             catch(e){

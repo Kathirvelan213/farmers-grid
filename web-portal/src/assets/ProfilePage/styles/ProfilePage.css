@@ -20,6 +20,98 @@
     padding: 5px;
 }
 
+.profileContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.profileHeader{
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    align-items: start;
+    gap: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.07);
+}
+
+.profileAvatar{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e5e7eb;
+}
+
+.profileInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.infoRow{
+    display: flex;
+    gap: 8px;
+}
+
+.infoLabel{
+    color: #6b7280; /* gray-500 */
+    min-width: 96px;
+}
+
+.infoValue{
+    color: #111827; /* gray-900 */
+    font-weight: 600;
+}
+
+.panelsRow{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.panel{
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.07);
+}
+
+.panelTitle{
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.profileExtra{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detailRow{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+}
+
+.detailLabel{
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.detailValue{
+    color: #111827;
+}
+
+.aboutBox{
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px;
+}
+
 .comparisonRecord {
     display: grid;
     /* grid-auto-flow: column; */
