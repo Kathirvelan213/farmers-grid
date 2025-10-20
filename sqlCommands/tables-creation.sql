@@ -63,3 +63,32 @@ CREATE TABLE UserDetails(
 	totalMatchScoreForRetailer FLOAT,
 );
 
+CREATE TABLE Requests (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    SenderId NVARCHAR(450) NOT NULL,      -- FK -> AspNetUsers(Id)
+    ReceiverId NVARCHAR(450) NOT NULL,    -- FK -> AspNetUsers(Id)
+    Status VARCHAR(20) DEFAULT 'pending',  -- pending / accepted / rejected / cancelled
+    SenderType VARCHAR(20) NOT NULL,       -- 'farmer' or 'buyer'
+    CreatedAt DATETIME2 DEFAULT SYSDATETIME(),
+
+    CONSTRAINT FK_Requests_Sender FOREIGN KEY (SenderId) REFERENCES AspNetUsers(Id),
+    CONSTRAINT FK_Requests_Receiver FOREIGN KEY (ReceiverId) REFERENCES AspNetUsers(Id)
+);
+CREATE TABLE RequestItems (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    RequestId INT NOT NULL,                -- FK -> Requests(Id)
+    ProductId INT NOT NULL,                -- FK -> Products(id)
+    OfferedPrice DECIMAL(10,2) NOT NULL,
+
+    CONSTRAINT FK_RequestItems_Request FOREIGN KEY (RequestId) REFERENCES Requests(Id),
+    CONSTRAINT FK_RequestItems_Product FOREIGN KEY (ProductId) REFERENCES Products(id)
+);
+
+CREATE TABLE Transactions (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    RequestId INT NOT NULL,
+    DeliveryOption VARCHAR(30),   -- 'self' or 'platform_transport'
+    TransportStatus VARCHAR(20) DEFAULT 'pending',
+    CreatedAt DATETIME2 DEFAULT SYSDATETIME(),
+    FOREIGN KEY (RequestId) REFERENCES Requests(Id)
+);

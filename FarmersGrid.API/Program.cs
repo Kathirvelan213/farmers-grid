@@ -113,6 +113,9 @@ builder.Services.AddScoped<AppUsersManager>();
 builder.Services.AddScoped<ProductMatchData>();
 builder.Services.AddScoped<ProductMatchManager>();
 
+builder.Services.AddScoped<RequestsData>();
+builder.Services.AddScoped<RequestsManager>();
+
 builder.Services.AddScoped<BlobServiceManager>();
 
 var app = builder.Build();
@@ -145,3 +148,5 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
+
+

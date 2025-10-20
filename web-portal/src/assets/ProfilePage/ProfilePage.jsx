@@ -93,7 +93,7 @@ export function ProfilePage(){
                 </div>
                 <div className='panel'>
                     <div className='panelTitle'>Negotiations</div>
-                    <SearchPanel items={Object.values(productComparison)} filterKey={"name"} DisplayComponent={NegotiationList} displayComponentProps={{keyField:"id"}}></SearchPanel>
+                    <SearchPanel items={Object.values(productComparison)} filterKey={"name"} DisplayComponent={NegotiationList} displayComponentProps={{keyField:"id",userData:userData,currentUser:user}}></SearchPanel>
                 </div>
             </div>
         </div>

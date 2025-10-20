@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function UsersPage(){
     const {user}=useAuth();
-    const [allSellers,setAllSellers]=useState({});
+    const [allSellers,setAllSellers]=useState({});  
     const [allRetailers,setAllRetailers]=useState({});
     const [matchScoresWithRetailers,setMatchScoresWithRetailers]=useState({});
     const [matchScoresWithSellers,setMatchScoresWithSellers]=useState({});

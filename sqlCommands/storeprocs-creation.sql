@@ -513,3 +513,119 @@ EXEC usp_GetSellerProducts @userId="9fe0c1aa-6789-4e13-a881-780c841ab5c1";
 EXEC usp_UpdateSellerProduct @id=21,@unitPrice=100.3;
 
 usp_GetMessages @chatId=1;
+
+
+--Requests
+CREATE PROC usp_CreateRequest
+    @SenderId NVARCHAR(450),
+    @ReceiverId NVARCHAR(450),
+    @SenderType VARCHAR(20)
+AS
+BEGIN
+    INSERT INTO Requests (SenderId, ReceiverId, SenderType, CreatedAt)
+    VALUES (@SenderId, @ReceiverId, @SenderType, SYSDATETIME());
+
+    SELECT SCOPE_IDENTITY() AS RequestId;
+END;
+GO
+
+CREATE PROC usp_AddRequestItem
+    @RequestId INT,
+    @ProductId INT,
+    @OfferedPrice DECIMAL(10,2)
+AS
+BEGIN
+    INSERT INTO RequestItems (RequestId, ProductId, OfferedPrice)
+    VALUES (@RequestId, @ProductId, @OfferedPrice);
+
+    SELECT * FROM RequestItems WHERE RequestId = @RequestId;
+END;
+GO
+CREATE PROC usp_GetRequestsForUser
+    @UserId NVARCHAR(450)
+AS
+BEGIN
+    SELECT 
+        r.Id AS RequestId,
+        r.SenderId, s.UserName AS SenderName,
+        r.ReceiverId, rcv.UserName AS ReceiverName,
+        r.Status, r.SenderType, r.CreatedAt
+    FROM Requests r
+    JOIN AspNetUsers s ON s.Id = r.SenderId
+    JOIN AspNetUsers rcv ON rcv.Id = r.ReceiverId
+    WHERE r.SenderId = @UserId OR r.ReceiverId = @UserId
+    ORDER BY r.CreatedAt DESC;
+END;
+GO
+
+CREATE PROC usp_GetRequestDetails
+    @RequestId INT
+AS
+BEGIN
+    SELECT 
+        r.Id AS RequestId,
+        r.SenderId, s.UserName AS SenderName,
+        r.ReceiverId, rcv.UserName AS ReceiverName,
+        r.Status, r.SenderType, r.CreatedAt
+    FROM Requests r
+    JOIN AspNetUsers s ON s.Id = r.SenderId
+    JOIN AspNetUsers rcv ON rcv.Id = r.ReceiverId
+    WHERE r.Id = @RequestId;
+
+    SELECT 
+        ri.Id AS ItemId, ri.ProductId, p.name AS ProductName, ri.OfferedPrice
+    FROM RequestItems ri
+    JOIN Products p ON p.id = ri.ProductId
+    WHERE ri.RequestId = @RequestId;
+END;
+GO
+CREATE PROC usp_UpdateRequestStatus
+    @RequestId INT,
+    @Status VARCHAR(20)
+AS
+BEGIN
+    UPDATE Requests
+    SET Status = @Status
+    WHERE Id = @RequestId;
+
+    SELECT * FROM Requests WHERE Id = @RequestId;
+END;
+GO
+
+
+CREATE PROC usp_CreateTransaction
+    @RequestId INT,
+    @DeliveryOption VARCHAR(30)
+AS
+BEGIN
+    INSERT INTO Transactions (RequestId, DeliveryOption, CreatedAt)
+    VALUES (@RequestId, @DeliveryOption, SYSDATETIME());
+
+    SELECT SCOPE_IDENTITY() AS TransactionId;
+END;
+GO
+
+CREATE PROC usp_GetTransactionsForUser
+    @UserId NVARCHAR(450)
+AS
+BEGIN
+    SELECT 
+        t.Id AS TransactionId,
+        r.Id AS RequestId,
+        r.SenderId, s.UserName AS SenderName,
+        r.ReceiverId, rcv.UserName AS ReceiverName,
+        p.name AS ProductName,
+        r.OfferedPrice,
+        t.DeliveryOption,
+        t.TransportStatus,
+        t.CreatedAt AS TransactionDate
+    FROM Transactions t
+    JOIN Requests r ON r.Id = t.RequestId
+    JOIN AspNetUsers s ON s.Id = r.SenderId
+    JOIN AspNetUsers rcv ON rcv.Id = r.ReceiverId
+    JOIN Products p ON p.id = r.ProductId
+    WHERE r.SenderId = @UserId OR r.ReceiverId = @UserId
+    ORDER BY t.CreatedAt DESC;
+END;
+GO
+
