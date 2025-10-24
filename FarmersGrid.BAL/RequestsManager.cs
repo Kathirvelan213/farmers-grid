@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using FarmersGrid.DAL;
+using FarmersGrid.Models;
 
 namespace FarmersGrid.BAL
 {
@@ -30,6 +31,21 @@ namespace FarmersGrid.BAL
             List<(int productId, decimal offeredPrice)> items)
         {
             return await _requestsData.CreateRequestWithItems(senderId, receiverId, senderType, items);
+        }
+
+        public async Task<IEnumerable<RequestSummary>> GetRequestsForUser(string userId)
+        {
+            return await _requestsData.GetRequestsForUser(userId);
+        }
+
+        public async Task<(RequestSummary header, IEnumerable<RequestItemSummary> items)> GetRequestDetails(int requestId)
+        {
+            return await _requestsData.GetRequestDetails(requestId);
+        }
+
+        public async Task UpdateRequestStatus(int requestId, string status)
+        {
+            await _requestsData.UpdateRequestStatus(requestId, status);
         }
     }
 }

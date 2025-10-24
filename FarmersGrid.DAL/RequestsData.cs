@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FarmersGrid.Models;
+using System.Data;
 
 namespace FarmersGrid.DAL
 {
@@ -57,6 +59,34 @@ namespace FarmersGrid.DAL
             }
 
             return requestId;
+        }
+
+        public async Task<IEnumerable<RequestSummary>> GetRequestsForUser(string userId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@UserId", userId);
+            return await _dbService.QueryAsync<RequestSummary>("usp_GetRequestsForUser", parameters);
+        }
+
+        public async Task<(RequestSummary header, IEnumerable<RequestItemSummary> items)> GetRequestDetails(int requestId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@RequestId", requestId);
+
+            using var conn = _dbService.CreateConnection();
+            using var multi = await conn.QueryMultipleAsync("usp_GetRequestDetails", parameters, commandType: CommandType.StoredProcedure);
+
+            var header = await multi.ReadFirstAsync<RequestSummary>();
+            var items = await multi.ReadAsync<RequestItemSummary>();
+            return (header, items);
+        }
+
+        public async Task UpdateRequestStatus(int requestId, string status)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@RequestId", requestId);
+            parameters.Add("@Status", status);
+            await _dbService.ExecuteAsync("usp_UpdateRequestStatus", parameters);
         }
     }
 }

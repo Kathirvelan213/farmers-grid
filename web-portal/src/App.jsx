@@ -14,18 +14,19 @@ import { useAuth } from './assets/global/components/AuthProvider';
 import { UnauthorizedPage } from './assets/UnauthorizedPage/UnauthorizedPage';
 import { Layout } from './assets/Layout/Layout';
 import { MyProductsPage } from './assets/MyProducts/MyProductsPage';
+import { RequestsPage } from './assets/RequestsPage/RequestsPage.jsx';
 
 
 function ProtectedRoute({children,allowedRoles}){
     const {user,loading,getMyInfo,clearMyInfo}=useAuth();
-    if(loading){
-      return <div>loading</div>
-    }
     if(!user){
-        return <Navigate to='/login'/>;
+      return <Navigate to='/login'/>;
     }
     if(allowedRoles && !allowedRoles.includes(user.role)){
-        return <Navigate to='/unauthorized'/>;
+      return <Navigate to='/unauthorized'/>;
+    }
+    if(loading){
+      return <div>loading</div>
     }
     return children;
 }
@@ -48,7 +49,7 @@ function App() {
             <Route path='/user/:userName' element={<ProtectedRoute> <ProfilePage/> </ProtectedRoute>}/>
             <Route path='/myRequests' element={<ProtectedRoute allowedRoles={['Retailer']}><RequestProductsPage/> </ProtectedRoute>}/>
             <Route path='/myProducts' element={<ProtectedRoute allowedRoles={['Seller']}><MyProductsPage/> </ProtectedRoute>}/>
-            <Route path='/dealRequests' element={<ProtectedRoute><div/> </ProtectedRoute>}/>
+            <Route path='/requests' element={<ProtectedRoute><RequestsPage/> </ProtectedRoute>}/>
             <Route path='/unauthorized' element={<UnauthorizedPage/>}/>
           </Route>
         </Routes>

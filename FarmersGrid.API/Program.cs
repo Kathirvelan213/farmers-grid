@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using FarmersGrid.API.Hubs;
 using Microsoft.AspNetCore.SignalR;
+using FarmersGrid.API.Hubs;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -137,6 +138,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.MapHub<ChatHub>("/chathub");
+app.MapHub<RequestsHub>("/requestshub");
 
 using (var scope = app.Services.CreateScope())
 {

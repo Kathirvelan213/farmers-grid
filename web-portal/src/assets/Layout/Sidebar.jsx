@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './styles/layout.css'
 import { Sidebar as ProSideBar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import { FaHome,FaApple,FaUser, FaMoneyBill, FaComment } from 'react-icons/fa';
+import { FaHome,FaApple,FaUser, FaMoneyBill, FaComment, FaList } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../global/components/AuthProvider';
 
@@ -31,6 +31,9 @@ export function Sidebar({className}){
                 <MenuItem icon={<FaComment/>}
                     active={location.pathname==='/chat'}
                     component={<Link to='/chat'/>}>Chat </MenuItem>
+                <MenuItem icon={<FaList/>}
+                    active={location.pathname==='/requests'}
+                    component={<Link to='/requests'/>}>Requests </MenuItem>
                 <MenuItem icon={<FaUser />}
                     active={location.pathname==='/users'}
                     component={<Link to='/users'/>}>Users </MenuItem>

@@ -1,0 +1,74 @@
+.requestsPage{display:flex;flex-direction:column;gap:12px}
+.tabs{display:flex;gap:8px}
+.tab{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:8px;padding:8px 12px;cursor:pointer}
+.tab.active{background:#111827;color:#fff;border-color:#111827}
+.requestsPanel{
+    background:white;
+    border-radius:8px;
+    padding:12px;
+}
+.panelTitle{
+    font-weight:600;
+    margin-bottom:8px;
+}
+.requestsList{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.requestRow{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border:1px solid #eee;
+    border-radius:6px;
+    padding:8px 10px;
+}
+.rowMain{display:flex;gap:10px;align-items:center}
+.reqId{font-weight:600;color:#666}
+.reqParties{color:#333}
+.rowMeta{display:flex;gap:10px;align-items:center}
+.status{padding:2px 8px;border-radius:999px;background:#eee;text-transform:capitalize}
+.status-accepted{background:#d1fae5;color:#065f46}
+.status-rejected{background:#fee2e2;color:#991b1b}
+.status-pending{background:#e5e7eb;color:#374151}
+.createdAt{color:#666;font-size:12px}
+.emptyState{color:#666}
+
+.requestBlock{display:flex;flex-direction:column;gap:6px}
+.requestItems{border:1px dashed #e5e7eb;border-radius:6px;padding:8px 10px}
+.itemRow{display:flex;justify-content:space-between;padding:4px 0}
+.prodName{color:#111827}
+.price{color:#065f46;font-weight:600}
+.loadingRow{color:#666}
+
+.actionButtons{
+    display:flex;
+    gap:8px;
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid #e5e7eb;
+}
+.acceptBtn{
+    background:#10b981;
+    color:white;
+    border:none;
+    border-radius:6px;
+    padding:8px 16px;
+    cursor:pointer;
+    font-weight:500;
+}
+.acceptBtn:hover:not(:disabled){background:#059669}
+.acceptBtn:disabled{background:#9ca3af;cursor:not-allowed}
+.rejectBtn{
+    background:#ef4444;
+    color:white;
+    border:none;
+    border-radius:6px;
+    padding:8px 16px;
+    cursor:pointer;
+    font-weight:500;
+}
+.rejectBtn:hover:not(:disabled){background:#dc2626}
+.rejectBtn:disabled{background:#9ca3af;cursor:not-allowed}
+
