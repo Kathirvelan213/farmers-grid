@@ -1,0 +1,390 @@
+.transportation-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.tab {
+    padding: 10px 20px;
+    border: 1px solid #d1d5db;
+    background: #f9fafb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tab.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+.tab:hover:not(.active) {
+    background: #e5e7eb;
+}
+
+/* Schedules Section */
+.schedules-section h3 {
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.schedules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.schedule-card {
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.schedule-header {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.schedule-header:hover {
+    background: #f9fafb;
+}
+
+.schedule-info h4 {
+    margin: 0 0 8px 0;
+    color: #1f2937;
+}
+
+.schedule-info p {
+    margin: 4px 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.schedule-status .status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.schedule-status .status.active {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.schedule-status .status.paused {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.schedule-details {
+    padding: 20px;
+    background: #f9fafb;
+}
+
+.pickup-list h5 {
+    margin: 0 0 15px 0;
+    color: #374151;
+}
+
+.pickup-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.pickup-item .status {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.pickup-item .status.scheduled {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.pickup-item .status.completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.pickup-item .status.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.pickup-item button {
+    padding: 4px 12px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.schedule-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.schedule-actions button {
+    padding: 8px 16px;
+    border: 1px solid #d1d5db;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.schedule-actions button:hover {
+    background: #f3f4f6;
+}
+
+/* Calendar Section */
+.calendar-section h3 {
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.calendar {
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header button {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.calendar-header button:hover {
+    background: #f3f4f6;
+}
+
+.calendar-header h3 {
+    margin: 0;
+    color: #1f2937;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.day-header {
+    background: #f3f4f6;
+    padding: 12px;
+    text-align: center;
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+}
+
+.calendar-day {
+    background: white;
+    min-height: 80px;
+    padding: 8px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-day.empty {
+    background: #f9fafb;
+    cursor: default;
+}
+
+.calendar-day.has-date:hover {
+    background: #f0f9ff;
+}
+
+.day-number {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.event-indicator {
+    background: #3b82f6;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: auto;
+}
+
+/* Pickup Management Modal */
+.pickup-management {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.pickup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.pickup-header h3 {
+    margin: 0;
+    color: #1f2937;
+}
+
+.pickup-header button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-inputs h4 {
+    margin: 0 0 20px 0;
+    color: #374151;
+}
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+.quantity-input label {
+    flex: 1;
+    font-weight: 500;
+    color: #374151;
+}
+
+.quantity-input input {
+    width: 100px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    text-align: right;
+}
+
+.quantity-input input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.quantity-input span {
+    color: #6b7280;
+    font-size: 14px;
+    min-width: 20px;
+}
+
+.pickup-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.pickup-actions button {
+    padding: 12px 24px;
+    border: 1px solid #d1d5db;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.pickup-actions button:hover {
+    background: #f3f4f6;
+}
+
+.pickup-actions .complete-btn {
+    background: #10b981;
+    color: white;
+    border-color: #10b981;
+}
+
+.pickup-actions .complete-btn:hover {
+    background: #059669;
+}
+
+.empty-state {
+    text-align: center;
+    color: #6b7280;
+    padding: 40px;
+    font-size: 16px;
+}

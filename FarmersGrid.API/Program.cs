@@ -6,7 +6,6 @@ using FarmersGrid.DAL;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using FarmersGrid.API.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using FarmersGrid.API.Hubs;
 
@@ -55,7 +54,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins(builder.Configuration["Cors:AllowedOrigins"])
+        policy.WithOrigins(builder.Configuration["Cors:AllowedOrigins"] ?? "http://localhost:3000")
         .AllowCredentials()
         .AllowAnyHeader()
         .AllowAnyMethod();
@@ -116,6 +115,9 @@ builder.Services.AddScoped<ProductMatchManager>();
 
 builder.Services.AddScoped<RequestsData>();
 builder.Services.AddScoped<RequestsManager>();
+
+builder.Services.AddScoped<TransportationData>();
+builder.Services.AddScoped<TransportationManager>();
 
 builder.Services.AddScoped<BlobServiceManager>();
 

@@ -85,15 +85,45 @@
     display: flex;
     gap:15px;
     align-items: center;
-    transition: background-color ease 0.3s
+    transition: all ease 0.3s;
+    cursor: pointer;
+    position: relative;
 }
 
-.chatUser:hover{
-    background-color: rgb(247, 247, 247);
+
+.chatUser::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: linear-gradient(to bottom, #10b981, #6366f1);
+    border-radius: 0 3px 3px 0;
+    transition: height 0.2s ease;
 }
 
-.chatList{
-    padding: 0px 5px;
+.chatUser:hover {
+    background-color: #f9fafb;
+}
+
+.chatUser:hover::before {
+    height: 50%;
+}
+
+.chatUser.active {
+    background-color: #f0fdf4;
+    color: #059669;
+}
+
+.chatUser.active::before {
+    height: 50%;
+}
+
+.chatList {
+    display: flex;
+    flex-direction: column;
 }
 
 .profilePic{
@@ -114,7 +144,10 @@
 
 .searchPanel{
     background-color: transparent;
+    margin-bottom: 12px;
+
 }
+
 
 .heading{
     text-align: left;
@@ -135,3 +168,49 @@
     gap:20px;
     align-content: center;
 }
+
+.dateDivider {
+    display: flex;
+    align-items: center;
+    width: auto;
+    justify-self: center;
+    justify-content: center;
+    position: sticky;
+    top: 10px;
+    background: rgb(223, 223, 223);
+    border-radius: 10px;;
+    padding: 5px 12px;
+    z-index: 10;
+}
+
+.emptyState {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    padding: 40px;
+    text-align: center;
+}
+
+.emptyStateIcon {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 24px;
+    opacity: 0.3;
+    color: #d1d5db;
+}
+
+.emptyStateTitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.emptyStateText {
+    font-size: 15px;
+    color: #9ca3af;
+}
+

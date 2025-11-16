@@ -1,74 +1,111 @@
-import { useEffect, useState } from "react"
-import SignalrService from "../SignalrService.js"
+import { useEffect, useState } from "react";
+import SignalrService from "../SignalrService.js";
 import { getMessagesAPI } from "../apiConsumer/chatAPI.js";
 // import User from "../global/UserDetails.js"
-import { MyMessage,OthersMessage } from "./components/Message.jsx";
-import { FaPaperPlane } from "react-icons/fa";
-import ScrollToBottom,{useScrollToBottom} from "react-scroll-to-bottom"
+import { MyMessage, OthersMessage } from "./components/Message.jsx";
+import { FaComments, FaPaperPlane } from "react-icons/fa";
+import ScrollToBottom, { useScrollToBottom } from "react-scroll-to-bottom";
 import { ChatMenu } from "./components/ChatMenu.jsx";
 import { CurrentChatNamePane } from "./components/CurrentChatNamePane.jsx";
 import { useAuth } from "../global/components/AuthProvider.jsx";
 
-export function ChatPage(){
-    const [sendMessage,setSendMessage]=useState('');
-    const [messages,setMessages]=useState({});
-    const [messageOrder,setMessageOrder]=useState([]);
-    const [currentChat,setCurrentChat]=useState({});
-    const scrollToBottom=useScrollToBottom();
-    const {user}=useAuth();
+export function ChatPage() {
+  const [sendMessage, setSendMessage] = useState("");
+  const [messages, setMessages] = useState({});
+  const [messageOrder, setMessageOrder] = useState([]);
+  const [currentChat, setCurrentChat] = useState({});
+  const scrollToBottom = useScrollToBottom();
+  const { user } = useAuth();
 
-    useEffect(()=>{              
-        SignalrService.off("receiveMessage")
-        SignalrService.on("receiveMessage",(message)=>{
-            setMessages(prev=>({...prev,[message.id]:message}));
-            setMessageOrder(prev=>([...prev,message.id]))
-        })
-    },[])
-    useEffect(()=>{        
-        const fetchMessages=async()=>{
-            try{
-                const result=await getMessagesAPI(currentChat.id);
-                const ids=result.data.map(message=>message.id);
-                setMessages(Object.fromEntries(result.data.map(message=>[message.id,message])));
-                setMessageOrder(ids);
-            }
-                catch(e){
-                    console.error(e);
-                }}
-            if(Object.keys(currentChat)!=0){
-                fetchMessages();
-            }
-    },[currentChat])
-            
-    function handleMessageChange(e){
-        setSendMessage(e.target.value);
+  useEffect(() => {
+    SignalrService.off("receiveMessage");
+    SignalrService.on("receiveMessage", (message) => {
+      setMessages((prev) => ({ ...prev, [message.id]: message }));
+      setMessageOrder((prev) => [...prev, message.id]);
+    });
+  }, []);
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const result = await getMessagesAPI(currentChat.id);
+        const ids = result.data.map((message) => message.id);
+        setMessages(Object.fromEntries(result.data.map((message) => [message.id, message])));
+        setMessageOrder(ids);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    if (Object.keys(currentChat) != 0) {
+      fetchMessages();
     }
-    async function send(e){
-        e.preventDefault();
-        if(sendMessage!=''){
-            await SignalrService.send("ReceiveAtHub",currentChat.id,sendMessage);
-            setSendMessage('');
-        }
-        scrollToBottom();
-    }
+  }, [currentChat]);
 
-    return(
-        <div className="chatPage">
-            <ChatMenu setCurrentChat={setCurrentChat}/>
-            {Object.keys(currentChat).length!=0?<div className="chatArea">
-                <CurrentChatNamePane chat={currentChat}/>
-                <ScrollToBottom className="chatContainer" followButtonClassName="followButton">
-                    {messageOrder.map(id=>{
-                        return messages[id].senderId===user.id?
-                        <MyMessage key={id} message={messages[id]}></MyMessage>:
-                        <OthersMessage key={id} message={messages[id]}></OthersMessage>;
-                    })}
-                </ScrollToBottom>
-                <form onSubmit={send} className="inputBar">
-                    <input className='textbar' value={sendMessage} placeholder="Enter a message" onChange={handleMessageChange}></input>
-                    <button className='w-[30px] justify-items-center'><FaPaperPlane></FaPaperPlane></button>
-                </form>
-            </div>:null}
+  function handleMessageChange(e) {
+    setSendMessage(e.target.value);
+  }
+  async function send(e) {
+    e.preventDefault();
+    if (sendMessage != "") {
+      await SignalrService.send("ReceiveAtHub", currentChat.id, sendMessage);
+      setSendMessage("");
+    }
+    scrollToBottom();
+  }
+
+  return (
+    <div className="chatPage">
+      <ChatMenu setCurrentChat={setCurrentChat} />
+      {Object.keys(currentChat).length != 0 ? (
+        <div className="chatArea">
+          <CurrentChatNamePane chat={currentChat} />
+          <ScrollToBottom className="chatContainer" followButtonClassName="followButton">
+            {messageOrder.length === 0 ? (
+              <div className="emptyState">
+                <FaComments className="emptyStateIcon" />
+                <div className="emptyStateTitle">No messages yet</div>
+                <div className="emptyStateText">Start the conversation!</div>
+              </div>
+            ) : (
+              () => {
+                const groupedMessages = [];
+                let currentDate = null;
+
+                messageOrder.forEach((id) => {
+                  const message = messages[id];
+                  const messageDate = new Date(message.timestamp).toLocaleDateString("en-gb");
+
+                  if (messageDate !== currentDate) {
+                    currentDate = messageDate;
+                    groupedMessages.push(<DateDivider key={`date-${id}`} date={message.timestamp} />);
+                  }
+
+                  groupedMessages.push(
+                    message.senderId === user.id ? <MyMessage key={id} message={message} /> : <OthersMessage key={id} message={message} />
+                  );
+                });
+
+                return groupedMessages;
+              }
+            )()}
+          </ScrollToBottom>
+          <form onSubmit={send} className="inputBar">
+            <input className="textbar" value={sendMessage} placeholder="Enter a message" onChange={handleMessageChange}></input>
+            <button className="w-[30px] justify-items-center">
+              <FaPaperPlane></FaPaperPlane>
+            </button>
+          </form>
         </div>
-    )
+      ) : null}
+    </div>
+  );
+}
+function DateDivider({ date }) {
+    const timestamp = new Date(date);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = timestamp.toLocaleDateString('en-gb', options);
+    return (
+        <div className="dateDivider">
+            <span>{formattedDate}</span>
+        </div>
+    );
 }

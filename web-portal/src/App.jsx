@@ -15,6 +15,7 @@ import { UnauthorizedPage } from './assets/UnauthorizedPage/UnauthorizedPage';
 import { Layout } from './assets/Layout/Layout';
 import { MyProductsPage } from './assets/MyProducts/MyProductsPage';
 import { RequestsPage } from './assets/RequestsPage/RequestsPage.jsx';
+import { TransportationPage } from './assets/TransportationPage/TransportationPage.jsx';
 
 
 function ProtectedRoute({children,allowedRoles}){
@@ -50,6 +51,7 @@ function App() {
             <Route path='/myRequests' element={<ProtectedRoute allowedRoles={['Retailer']}><RequestProductsPage/> </ProtectedRoute>}/>
             <Route path='/myProducts' element={<ProtectedRoute allowedRoles={['Seller']}><MyProductsPage/> </ProtectedRoute>}/>
             <Route path='/requests' element={<ProtectedRoute><RequestsPage/> </ProtectedRoute>}/>
+            <Route path='/transportation' element={<ProtectedRoute><TransportationPage/> </ProtectedRoute>}/>
             <Route path='/unauthorized' element={<UnauthorizedPage/>}/>
           </Route>
         </Routes>
