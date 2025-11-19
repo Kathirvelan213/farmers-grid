@@ -1,82 +1,106 @@
-# Farmers-Grid
-The project 'farmers-grid' aims to solve the middleman problem faced by farmers leading to a lower income for them. This project eliminates the middleman with the use of a Mobile &amp; web application to connect farmers directly to the consumers/retailers 
 
-**SNEAK-PEAK**
-<div align="center">
+
+# **Farmers-Grid**
+
+The project **Farmers-Grid** aims to solve the middleman problem faced by farmers, which reduces their income.
+This system removes intermediaries through **mobile & web applications**, enabling farmers to connect directly with consumers and retailers.
+
+---
+ **Features**
+
+- Direct farmer–buyer communication  
+- Real-time chat with SignalR  
+- Smart matchmaking algorithm  
+- Product listing & request management  
+- Integrated logistics planning  
+- Web + mobile support  
+- Secure authentication (JWT + Cookies)
   
-<img src="ProjectOutput/Login.png" width="720" > 
+## **INTERFACE OVERVIEW**
+
+<div align="center">
+
+<img src="ProjectOutput/Login.png" width="720">  
 <br/>
-<img src="ProjectOutput/Chat.png" width="720"> 
+<img src="ProjectOutput/Chat.png" width="720">  
 <br/>
-<img src="ProjectOutput/AddProduct.png" width="720"> 
+<img src="ProjectOutput/AddProduct.png" width="720">
+
 </div>
 
+---
 
-## 🏗️ System Architecture
-
-<table>
-<tr>
-<td width="300" valign="top">
-
-### Tech Stack
+## **TECH STACK & ARCHITECTURE**
 
 <table>
 <tr>
-<td align="center">
-<b> WebPortal</b><br/>
-<sub>Frontend Layer</sub><br/><br/>
-<code>HTML/CSS/React.js</code><br/>
-Auth • Dashboard • SasManager
-  <br/>
-API Consumer • SignalRService
-</td>
-</tr>
-<tr><td align="center">↓ HTTPS REST API</td></tr>
-<tr>
-<td align="center">
-<b> FarmersGrid.API</b><br/>
-<sub>Backend API Layer</sub><br/><br/>
-<code>ASP.NET Core Web API</code><br/>
-<code>HTTP Cookie +JWT Auth</code><br/>
-Controllers → Services → DTOs
-  <br/>
-Hubs (Azure SignalR Websockets)->Services
-</td>
-</tr>
-<tr><td align="center">↓</td></tr>
-<tr>
-<td align="center">
-<b> FarmersGrid.BAL</b><br/>
-<sub>Business Layer</sub><br/><br/>
-<code>C# Class Library</code><br/>
-AuthBusiness • UserBusiness<br/>
-ProductBusiness • MatchScoreManager<br/>
-ChatManager • TransportBusiness
-</td>
-</tr>
-<tr><td align="center">↓</td></tr>
-<tr>
-<td align="center">
-<b> FarmersGrid.DAL</b><br/>
-<sub>Data Layer</sub><br/><br/>
-<code>DbContext</code><br/>
-UserRepo • Products • Schedules<br/>
-  ChatData • RequestsData
-</td>
-</tr>
-<tr><td align="center">↓</td></tr>
-<tr>
-<td align="center">
-<b> Cloud Database</b><br/>
-<sub>Azure SQL • Azure Blob Storage</sub>
-</td>
-</tr>
+<td width="260" valign="top">
+
+### **Tech Stack**
+
+<table>
+  <!-- WEB PORTAL -->
+  <tr>
+    <td align="center">
+      <b style="font-size:16px;">WEB PORTAL</b><br/><br/>
+      <code style="font-size:15px;">React.js • HTML • CSS</code><br/><br/>
+      <strong>Auth • State Manager • SignalR Client</strong>
+    </td>
+  </tr>
+
+  <tr><td align="center"><strong>↓ HTTPS REST API</strong></td></tr>
+
+  <!-- API -->
+  <tr>
+    <td align="center">
+      <b style="font-size:16px;">FARMERSGRID.API</b><br/><br/>
+      <code style="font-size:15px;">ASP.NET Core Web API</code><br/><br/>
+      <strong>JWT + Cookie Auth</strong><br/>
+      <strong>Controllers • SignalR Hubs</strong>
+    </td>
+  </tr>
+
+  <tr><td align="center"><strong>↓</strong></td></tr>
+
+  <!-- BAL -->
+  <tr>
+    <td align="center">
+      <b style="font-size:16px;">BUSINESS LOGIC (BAL)</b><br/><br/>
+      <code style="font-size:15px;">C# Libraries</code><br/><br/>
+      <strong>Matching • Routing • Domain Logic</strong>
+    </td>
+  </tr>
+
+  <tr><td align="center"><strong>↓</strong></td></tr>
+
+  <!-- DAL -->
+  <tr>
+    <td align="center">
+      <b style="font-size:16px;">DATA ACCESS (DAL)</b><br/><br/>
+      <code style="font-size:15px;">C# Data Layer</code><br/><br/>
+      <strong>Repositories • SQL Operations</strong>
+    </td>
+  </tr>
+
+  <tr><td align="center"><strong>↓</strong></td></tr>
+
+  <!-- CLOUD STORAGE -->
+  <tr>
+    <td align="center">
+      <b style="font-size:16px;">CLOUD DATABASE</b><br/><br/>
+      <code style="font-size:15px;">Azure SQL</code><br/>
+      <code style="font-size:15px;">Azure Blob Storage</code><br/><br/>
+      <strong>Persistent Data • Image/Media Storage</strong>
+    </td>
+  </tr>
 </table>
 
 </td>
+
 <td width="1000" valign="center" align="center">
 
-### Visual Flow
+### **Visual Flow**
+
 ```mermaid
 flowchart TD
     A[🌐 **WebPortal**<br/>Frontend Layer<br/>HTML/CSS/REACT.JS]
@@ -87,20 +111,15 @@ flowchart TD
     G[📁 **Azure Blob Storage**<br/>Images, Documents, Media]
     H[🔔 **Azure SignalR**<br/>Real-time WebSockets Updates]
 
-    %% Primary Flow
     A -->|HTTPS REST| B
     B --> C
     C --> D
     D --> E
 
-
-    %% Additional Cloud Integrations
     A -->|Real-time UI Updates| H
     B -->|Push Events| H
     B -->|Upload / Download| G
 
-
-    %% Styles 
     style A fill:#E8F1FA,stroke:#1E70C1,stroke-width:2px,color:#0B2E4E
     style B fill:#E0F7F4,stroke:#00897B,stroke-width:2px,color:#004D40
     style C fill:#E0F7F4,stroke:#00897B,stroke-width:2px,color:#004D40
@@ -108,27 +127,135 @@ flowchart TD
     style E fill:#FFF5D6,stroke:#D4A017,stroke-width:2px,color:#6A5200
     style G fill:#F1E7FF,stroke:#7E57C2,stroke-width:2px,color:#3E2A7C
     style H fill:#FCE4EC,stroke:#C2185B,stroke-width:2px,color:#880E4F
-
 ```
 
 </td>
 </tr>
 </table>
 
-
+---
 
 ## System Modules
-| Module | Description |
-|---------------|--------------------------------------------|
-| | |
-| Farmer Module | |
-| Handles all farmer-facing features related to product management and negotiation.<br><br>- Create and manage product listings<br>- Set and update pricing<br>- Receive buyer proposals<br>- Accept or decline offers<br>- Chat with buyers<br>- Choose transport or logistics options |<img src="ProjectOutput/MyProducts.png" width="720">  |
-| Buyer Module |  |
-| Provides buyers with tools to find products, negotiate, and contact farmers.<br><br>- Create product requests<br>- Set desired prices<br>- Receive matched farmers<br>- Send purchase proposals<br>- Chat with farmers<br>- Select delivery or pickup options |<img src="ProjectOutput/Requests.png" width="720"> |
-| Matchmaker Module |  |
-| Computes compatibility between farmers and buyers using data-driven scoring.<br><br>- Compare price expectations<br>- Calculate distance<br>- Match demand and available quantity<br>- Generate a match score<br>- Rank best potential matches |<img src="ProjectOutput/Profile.png" width="720"> |
-| Messaging Module | |
-| Allows direct communication between users.<br><br>- In-app real-time chat<br>- Option to reveal phone number<br>- Basic message history |<img src="ProjectOutput/Chat.png" width="720">  |
-| Logistics Module |  |
-| Coordinates the transportation of goods efficiently.<br><br>- Pooled transport routing<br>- Optimized multi-drop delivery<br>- Cost-efficient shared routes<br>- Support for self-arranged transport |<img src="ProjectOutput/Schedule.png" width="720"> |
+
+<table>
+  <!-- FARMER MODULE -->
+  <tr>
+    <td colspan="2"><strong>FARMER MODULE</strong></td>
+  </tr>
+  <tr>
+    <td width="40%">
+      Handles all farmer-facing features related to product management and negotiation.<br><br>
+      • Create & manage product listings<br>
+      • Set pricing<br>
+      • Receive buyer proposals<br>
+      • Accept/decline offers<br>
+      • Chat with buyers<br>
+      • Choose logistics options
+    </td>
+    <td width="60%">
+      <img src="ProjectOutput/MyProducts.png" width="100%">
+    </td>
+  </tr>
+
+  <!-- BUYER MODULE -->
+  <tr>
+    <td colspan="2"><strong>BUYER MODULE</strong></td>
+  </tr>
+  <tr>
+    <td width="40%">
+      Tools for buyers to find products, negotiate, and contact farmers.<br><br>
+      • Create product requests<br>
+      • Set desired price<br>
+      • View matched farmers<br>
+      • Send proposals<br>
+      • Chat with farmers<br>
+      • Delivery/pickup options
+    </td>
+    <td width="60%">
+      <img src="ProjectOutput/Requests.png" width="100%">
+    </td>
+  </tr>
+
+  <!-- MATCHMAKER MODULE -->
+  <tr>
+    <td colspan="2"><strong>MATCHMAKER MODULE</strong></td>
+  </tr>
+  <tr>
+    <td width="40%">
+      Computes compatibility between farmers and buyers using scoring logic.<br><br>
+      • Compare price expectations<br>
+      • Distance calculation<br>
+      • Match demand & quantity<br>
+      • Generate match score<br>
+      • Rank best matches
+    </td>
+    <td width="60%">
+      <img src="ProjectOutput/Profile.png" width="100%">
+    </td>
+  </tr>
+
+  <!-- MESSAGING MODULE -->
+  <tr>
+    <td colspan="2"><strong>MESSAGING MODULE</strong></td>
+  </tr>
+  <tr>
+    <td width="40%">
+      Real-time in-app communication.<br><br>
+      • WebSocket chat<br>
+      • Optional phone reveal<br>
+      • Message history
+    </td>
+    <td width="60%">
+      <img src="ProjectOutput/Chat.png" width="100%">
+    </td>
+  </tr>
+
+  <!-- LOGISTICS MODULE -->
+  <tr>
+    <td colspan="2"><strong>LOGISTICS MODULE</strong></td>
+  </tr>
+  <tr>
+    <td width="40%">
+      Plans transportation efficiently.<br><br>
+      • Pooled transport<br>
+      • Multi-drop optimization<br>
+      • Shared route costs<br>
+      • Self-transport support
+    </td>
+    <td width="60%">
+      <img src="ProjectOutput/Schedule.png" width="100%">
+    </td>
+  </tr>
+</table>
+
+
+
+---
+
+## **Installation**
+
+### **1. Clone the Repository**
+
+```bash
+git clone https://github.com/Kathirvelan213/farmers-grid.git
+cd farmers-grid
+```
+
+### **2. Backend Setup (ASP.NET Core API)**
+
+* Open **farmers-grid.sln** in Visual Studio
+* Run the SQL scripts inside the **sqlCommands/** folder
+* Update the DB connection string in **appsettings.json**
+* Restore NuGet packages
+* Run the **FarmersGrid.API** project
+
+### **3. Run the Web Portal**
+
+```bash
+cd web-portal
+npm install
+npm start
+```
+
+---
 
